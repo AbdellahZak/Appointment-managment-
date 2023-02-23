@@ -6,7 +6,7 @@ import javafx.fxml.Initializable;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class Controller implements Initializable {
+public class ControllerMainLogin implements Initializable {
     public void loginScreenLogingIdTxtField(ActionEvent actionEvent) {
     }
 
