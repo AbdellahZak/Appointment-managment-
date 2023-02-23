@@ -1,4 +1,13 @@
 package AbdoC195.Controllers;
 
-public class CustomerViewController {
+import javafx.fxml.Initializable;
+
+import java.net.URL;
+import java.util.ResourceBundle;
+
+public class CustomerViewController implements Initializable {
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+
+    }
 }
