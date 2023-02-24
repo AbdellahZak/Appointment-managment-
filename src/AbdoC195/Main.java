@@ -23,13 +23,6 @@ public class Main extends Application {
 
     public static void main(String[] args) throws SQLException {
         JDBC.makeConnection();
-        int rowsAffected= DbHelper.insert("skay", "shad");
-        if(rowsAffected>0){
-            System.out.println("insert failed");
-        }
-        else{
-            System.out.println("insert failed");
-        }
         launch(args);
         JDBC.closeConnection();
     }
