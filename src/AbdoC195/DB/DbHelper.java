@@ -20,16 +20,22 @@ public abstract class DbHelper {
         int rowsAffected =ps.executeUpdate();
         return rowsAffected;
     }
-    public static boolean VerifyNameAndPassword(String userName,String Password) throws SQLException {
-        Boolean Bname;
-        Boolean Bpass;
+    public static boolean VerifyNameAndPassword(String userName,String password) throws SQLException {
+        Boolean Bname=false;
+        Boolean Bpass=false;
         String sql="SELECT User_Name, Password FROM users";
         PreparedStatement ps=JDBC.connection.prepareStatement(sql);
         ResultSet rs=ps.executeQuery();
         while (rs.next()){
             String uName =rs.getString("User_Name");
-            if(uName==userName){Bname=T}
-            String Pass =rs.getString("Password");
+            if(uName.equals(userName)){
+                Bname=true;
+            };
+            String pass =rs.getString("Password");
+            if(pass.equals(password)){
+                Bpass=true;
+            }
+            if (Bname==true && Bpass==true){return true;}
         }
 
     return false;
