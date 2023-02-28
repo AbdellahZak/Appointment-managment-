@@ -36,10 +36,16 @@ public class ControllerMainLogin implements Initializable {
         if(DbHelper.VerifyNameAndPassword(userName,password)==true){
             System.out.println("all correct pas and id");
         }else{
+            if(Locale.getDefault().getLanguage().equals("fr")){
+                Alert alert =new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("le login ou le mot de pass est errone");
+                alert.setContentText("essayer une autre fois STP");
+                alert.showAndWait();
+            }else{
             Alert alert =new Alert(Alert.AlertType.ERROR);
             alert.setTitle("User Id or password is wrong");
             alert.setContentText("please retry again");
-            alert.showAndWait();
+            alert.showAndWait();}
         };
     }
 
@@ -48,9 +54,12 @@ public class ControllerMainLogin implements Initializable {
         ZoneId zoneId = ZoneId.systemDefault();  //detcting default Zone Id
         mainViewTimeZoneTxtField.setText(zoneId.getId());
         try {
-        ResourceBundle ResBundle= ResourceBundle.getBundle("AbdoC195/Res", Locale.getDefault()); //detecting default language
-        if(Locale.getDefault().equals("fr")){
-            loginScreenZoneIdLbl.setText(ResBundle.getString("ZoneId"));
+        ResourceBundle resBundle= ResourceBundle.getBundle("AbdoC195/Res", Locale.getDefault()); //detecting default language
+        if(Locale.getDefault().getLanguage().equals("fr")){
+            loginScreenZoneIdLbl.setText(resBundle.getString("ZoneId"));
+            loginScreenEnterBtnStat.setText(resBundle.getString("Enter"));
+            loginScreenLogingIdLbl.setText(resBundle.getString("LoginID"));
+            loginScreenPasswordLbl.setText(resBundle.getString("Password"));
         }
        }catch (MissingResourceException e){
          }

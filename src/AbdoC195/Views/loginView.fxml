@@ -12,7 +12,7 @@
       <Label fx:id="loginScreenLogingIdLbl" layoutX="140.0" layoutY="153.0" text="Login ID" />
       <Label fx:id="loginScreenPasswordLbl" layoutX="140.0" layoutY="192.0" text="Password" />
       <Label fx:id="loginScreenZoneIdLbl" layoutX="14.0" layoutY="21.0" text="Zone ID : " />
-      <TextField fx:id="mainViewTimeZoneTxtField" disable="true" editable="false" layoutX="75.0" layoutY="17.0" />
+      <TextField fx:id="mainViewTimeZoneTxtField" disable="true" editable="false" layoutX="170.0" layoutY="17.0" />
       <Button fx:id="loginScreenEnterBtnStat" layoutX="275.0" layoutY="234.0" mnemonicParsing="false" onAction="#loginScreenEnterBtn" text="Enter" />
    </children>
 </AnchorPane>
