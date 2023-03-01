@@ -1,11 +1,9 @@
 package AbdoC195.DB;
 
-import AbdoC195.Controllers.ControllerHelper;
 import AbdoC195.Model.Customer;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
-import java.security.PublicKey;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
