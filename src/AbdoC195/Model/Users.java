@@ -3,15 +3,16 @@ package AbdoC195.Model;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
+import java.sql.Timestamp;
 import java.util.Date;
 /** User Model class. */
 public class Users {
     private int User_ID;
     private String User_Name;
     private String Password;
-    private Date Create_Date;
+    private Timestamp Create_Date;
     private String Created_By;
-    private Date Last_Update;
+    private Timestamp Last_Update;
 
     public int getUser_ID() {
         return User_ID;
@@ -41,7 +42,7 @@ public class Users {
         return Create_Date;
     }
 
-    public void setCreate_Date(Date create_Date) {
+    public void setCreate_Date(Timestamp create_Date) {
         Create_Date = create_Date;
     }
 
@@ -57,7 +58,7 @@ public class Users {
         return Last_Update;
     }
 
-    public void setLast_Update(Date last_Update) {
+    public void setLast_Update(Timestamp last_Update) {
         Last_Update = last_Update;
     }
 
@@ -71,7 +72,7 @@ public class Users {
 
     private String Last_Updated_By;
 
-    public Users(int user_ID, String user_Name, String password, Date create_Date, String created_By, Date last_Update, String last_Updated_By) {
+    public Users(int user_ID, String user_Name, String password, Timestamp create_Date, String created_By, Timestamp last_Update, String last_Updated_By) {
         User_ID = user_ID;
         User_Name = user_Name;
         Password = password;

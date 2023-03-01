@@ -75,7 +75,7 @@ public class ControllerMainLogin implements Initializable {
 
     public void loginScreenEnterBtn(ActionEvent actionEvent) throws IOException {
         stage =(Stage)((Button)actionEvent.getSource()).getScene().getWindow();
-        scene = FXMLLoader.load(getClass().getResource("AbdoC195/Views/directoryView.fxml"));
+        scene = FXMLLoader.load(getClass().getResource("/AbdoC195/Views/directoryView.fxml"));
         stage.setScene(new Scene(scene));
         stage.show();
     }

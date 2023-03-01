@@ -18,8 +18,7 @@
                 <TableColumn fx:id="directoryViewCustomerAddressClmn" prefWidth="125.0" text="Address" />
                   <TableColumn fx:id="directoryViewCustomerPostalCodeClmn" prefWidth="61.0" text="Postal code" />
                   <TableColumn fx:id="directoryViewCustomerPhoneNumberClmn" prefWidth="165.0" text="Phone number" />
-                  <TableColumn fx:id="directoryViewCustomerFirstLevelDClmn" prefWidth="146.0" text="First level division" />
-                  <TableColumn fx:id="directoryViewCutomerCountryClmn" prefWidth="102.0" text="Country" />
+                  <TableColumn fx:id="directoryViewCustomerFirstLevelDClmn" prefWidth="176.0" text="First level division" />
               </columns>
             </TableView>
             <Label layoutX="23.0" layoutY="14.0" text="Customers">

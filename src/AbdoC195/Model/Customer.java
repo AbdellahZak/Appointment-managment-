@@ -6,17 +6,16 @@ public class Customer {
     private String address;
     private String postalCode;
     private String phoneNumber;
-    private String first_levelD;
+    private int first_levelD;
     private String country;
 
-    public Customer(int customer_Id, String customer_Name, String address, String postalCode, String phoneNumber, String first_levelD, String country) {
+    public Customer(int customer_Id, String customer_Name, String address, String postalCode, String phoneNumber, int first_levelD) {
         this.customer_Id = customer_Id;
         this.customer_Name = customer_Name;
         this.address = address;
         this.postalCode = postalCode;
         this.phoneNumber = phoneNumber;
         this.first_levelD = first_levelD;
-        this.country = country;
     }
 
     public int getCustomer_Id() {
@@ -59,19 +58,12 @@ public class Customer {
         this.phoneNumber = phoneNumber;
     }
 
-    public String getFirst_levelD() {
+    public int getFirst_levelD() {
         return first_levelD;
     }
 
-    public void setFirst_levelD(String first_levelD) {
+    public void setFirst_levelD(int first_levelD) {
         this.first_levelD = first_levelD;
     }
 
-    public String getCountry() {
-        return country;
-    }
-
-    public void setCountry(String country) {
-        this.country = country;
-    }
 }

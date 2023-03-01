@@ -1,5 +1,8 @@
 package AbdoC195.DB;
 
+import AbdoC195.Model.Customer;
+
+import java.security.PublicKey;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -40,4 +43,22 @@ public abstract class DbHelper {
 
     return false;
     }
+    public static Customer getCustomersDb() throws SQLException {
+        String sql="SELECT Customer_ID, Customer_Name, Address, Postal_Code, Phone, Division_ID FROM customers";
+        PreparedStatement ps=JDBC.connection.prepareStatement(sql);
+        ResultSet rs=ps.executeQuery();
+        Customer customer = null;
+        while (rs.next()){
+            int customer_Id= rs.getInt("Customer_ID");
+            String customer_Name= rs.getString("Customer_name");
+            String address= rs.getString("Address");
+            String postal_Code= rs.getString("Postal_Code");
+            String phone= rs.getString("Phone");
+            int divison_ID =rs.getInt("Division_ID");
+            customer= new Customer(customer_Id,customer_Name,address,postal_Code,phone,divison_ID);
+        }
+        return customer;
+    }
+
+
 }

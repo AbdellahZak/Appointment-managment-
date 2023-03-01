@@ -19,7 +19,6 @@ public class DirectoryController implements Initializable {
     public TableColumn<Customer,String> directoryViewCustomerPostalCodeClmn;
     public TableColumn<Customer,String> directoryViewCustomerPhoneNumberClmn;
     public TableColumn<Customer,String> directoryViewCustomerFirstLevelDClmn;
-    public TableColumn<Customer,String> directoryViewCutomerCountryClmn;
     public TableView directoryViewAppTable;
     public TableColumn directoryViewAppointmentIdClmn;
     public TableColumn directoryViewAppTitleClmn;
@@ -53,6 +52,7 @@ public class DirectoryController implements Initializable {
 
     public void directoryViewAppUpdateButton(ActionEvent actionEvent) {
     }
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         directoryViewCustomerTable.setItems(ControllerHelper.getCustomers()); // filling tableView
@@ -62,7 +62,6 @@ public class DirectoryController implements Initializable {
         directoryViewCustomerPostalCodeClmn.setCellValueFactory(new PropertyValueFactory<>("postalCode"));
         directoryViewCustomerPhoneNumberClmn.setCellValueFactory(new PropertyValueFactory<>("phoneNumber"));
         directoryViewCustomerFirstLevelDClmn.setCellValueFactory(new PropertyValueFactory<>("first_levelD"));
-        directoryViewCutomerCountryClmn.setCellValueFactory(new PropertyValueFactory<>("country"));
 
     }
 }
