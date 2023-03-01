@@ -74,5 +74,9 @@ public abstract class DbHelper {
         return getCustomers();
     }
 
+    /////////////////////////////////////////////////////////////////////////////////////////////////////// Division
+    public static ObservableList<Customer> allDivisions= FXCollections.observableArrayList();
+
+
 
 }
