@@ -3,12 +3,17 @@ package AbdoC195.Controllers;
 import AbdoC195.DB.DbHelper;
 import AbdoC195.Model.Users;
 import javafx.event.ActionEvent;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.time.ZoneId;
@@ -18,6 +23,8 @@ import java.util.ResourceBundle;
 
 
 public class ControllerMainLogin implements Initializable {
+    Stage stage;
+    Parent scene;
     public Label loginScreenLogingIdLbl;
     public Label loginScreenPasswordLbl;
     public TextField loginScreenLogingIdTxtFieldStat;
@@ -66,6 +73,10 @@ public class ControllerMainLogin implements Initializable {
 
     }
 
-    public void loginScreenEnterBtn(ActionEvent actionEvent) {
+    public void loginScreenEnterBtn(ActionEvent actionEvent) throws IOException {
+        stage =(Stage)((Button)actionEvent.getSource()).getScene().getWindow();
+        scene = FXMLLoader.load(getClass().getResource("AbdoC195/Views/directoryView.fxml"));
+        stage.setScene(new Scene(scene));
+        stage.show();
     }
 }
