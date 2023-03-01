@@ -6,6 +6,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -54,15 +55,14 @@ public class DirectoryController implements Initializable {
     }
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        directoryViewAppTable.setItems(DirectoryController.getCustomers()); // filling tableView
-        mainViewPartIdClmn.setCellValueFactory(new PropertyValueFactory<>("id"));  //Javafx makes the i capital I and add a get before Id
-        mainViewPartnamedClmn.setCellValueFactory(new PropertyValueFactory<>("name"));
-        mainViewPartInvClmn.setCellValueFactory(new PropertyValueFactory<>("stock"));
-        mainViewPartPriceClmn.setCellValueFactory(new PropertyValueFactory<>("price"));
-        mainViewProductIdClmn.setCellValueFactory(new PropertyValueFactory<>("id"));
-        mainViewProductnameClmn.setCellValueFactory(new PropertyValueFactory<>("name"));
-        mainViewProductInvClmn.setCellValueFactory(new PropertyValueFactory<>("stock"));
-        mainViewProductPriceClmn.setCellValueFactory(new PropertyValueFactory<>("price"));
+        directoryViewCustomerTable.setItems(ControllerHelper.getCustomers()); // filling tableView
+        directoryViewCustomerIdClmn.setCellValueFactory(new PropertyValueFactory<>("customer_Id"));
+        directoryViewCustomerNameClmn.setCellValueFactory(new PropertyValueFactory<>("customer_Name"));
+        directoryViewCustomerAddressClmn.setCellValueFactory(new PropertyValueFactory<>("address"));
+        directoryViewCustomerPostalCodeClmn.setCellValueFactory(new PropertyValueFactory<>("postalCode"));
+        directoryViewCustomerPhoneNumberClmn.setCellValueFactory(new PropertyValueFactory<>("phoneNumber"));
+        directoryViewCustomerFirstLevelDClmn.setCellValueFactory(new PropertyValueFactory<>("first_levelD"));
+        directoryViewCutomerCountryClmn.setCellValueFactory(new PropertyValueFactory<>("country"));
 
     }
 }
