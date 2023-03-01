@@ -1,6 +1,7 @@
 package AbdoC195.DB;
 
 import AbdoC195.Model.Customer;
+import AbdoC195.Model.Divison;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
@@ -75,8 +76,30 @@ public abstract class DbHelper {
     }
 
     /////////////////////////////////////////////////////////////////////////////////////////////////////// Division
-    public static ObservableList<Customer> allDivisions= FXCollections.observableArrayList();
 
 
+    public static ObservableList<Divison> allDivisions= FXCollections.observableArrayList();
+
+    public static ObservableList<Divison> getDivisions(){
+        return allDivisions;
+    }
+
+    public static void addDiviosn(Divison division){
+        allDivisions.add(division);
+    }
+
+    public static ObservableList<Divison> getDivionsDb() throws SQLException {
+        String sql="SELECT Division_ID, Division, Country_ID FROM first_level_divisions";
+        PreparedStatement ps=JDBC.connection.prepareStatement(sql);
+        ResultSet rs=ps.executeQuery();
+        Customer customer = null;
+        while (rs.next()){
+            int division_Id= rs.getInt("Division_ID");
+            String division= rs.getString("Division");
+            int country_ID =rs.getInt("Country_ID");
+            addDiviosn(new Divison(division_Id,division,country_ID));
+        }
+        return getDivisions();
+    }
 
 }
