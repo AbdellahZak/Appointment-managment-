@@ -1,5 +1,6 @@
 package AbdoC195.Controllers;
 
+import AbdoC195.DB.DbHelper;
 import AbdoC195.Model.Customer;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -9,6 +10,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 public class DirectoryController implements Initializable {
@@ -55,7 +57,11 @@ public class DirectoryController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        directoryViewCustomerTable.setItems(ControllerHelper.getCustomers()); // filling tableView
+        try {
+            directoryViewCustomerTable.setItems(DbHelper.getCustomersDb()); // filling tableView
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
         directoryViewCustomerIdClmn.setCellValueFactory(new PropertyValueFactory<>("customer_Id"));
         directoryViewCustomerNameClmn.setCellValueFactory(new PropertyValueFactory<>("customer_Name"));
         directoryViewCustomerAddressClmn.setCellValueFactory(new PropertyValueFactory<>("address"));

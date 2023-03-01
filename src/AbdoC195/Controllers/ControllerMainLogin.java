@@ -38,22 +38,7 @@ public class ControllerMainLogin implements Initializable {
     }
 
     public void loginScreenPasswordTxtField(ActionEvent actionEvent) throws SQLException {
-        String userName= loginScreenLogingIdTxtFieldStat.getText();
-        String password= loginScreenPasswordTxtFieldStat.getText();
-        if(DbHelper.VerifyNameAndPassword(userName,password)==true){
-            System.out.println("all correct pas and id");
-        }else{
-            if(Locale.getDefault().getLanguage().equals("fr")){
-                Alert alert =new Alert(Alert.AlertType.ERROR);
-                alert.setTitle("le login ou le mot de pass est errone");
-                alert.setContentText("essayer une autre fois STP");
-                alert.showAndWait();
-            }else{
-            Alert alert =new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("User Id or password is wrong");
-            alert.setContentText("please retry again");
-            alert.showAndWait();}
-        };
+
     }
 
     @Override
@@ -73,10 +58,26 @@ public class ControllerMainLogin implements Initializable {
 
     }
 
-    public void loginScreenEnterBtn(ActionEvent actionEvent) throws IOException {
-        stage =(Stage)((Button)actionEvent.getSource()).getScene().getWindow();
-        scene = FXMLLoader.load(getClass().getResource("/AbdoC195/Views/directoryView.fxml"));
-        stage.setScene(new Scene(scene));
-        stage.show();
+    public void loginScreenEnterBtn(ActionEvent actionEvent) throws IOException, SQLException {
+        String userName= loginScreenLogingIdTxtFieldStat.getText();
+        String password= loginScreenPasswordTxtFieldStat.getText();
+        if(DbHelper.VerifyNameAndPassword(userName,password)==true){
+            stage =(Stage)((Button)actionEvent.getSource()).getScene().getWindow();
+            scene = FXMLLoader.load(getClass().getResource("/AbdoC195/Views/directoryView.fxml"));
+            stage.setScene(new Scene(scene));
+            stage.show();
+        }else{
+            if(Locale.getDefault().getLanguage().equals("fr")){
+                Alert alert =new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("le login ou le mot de pass est errone");
+                alert.setContentText("essayer une autre fois STP");
+                alert.showAndWait();
+            }else{
+                Alert alert =new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("User Id or password is wrong");
+                alert.setContentText("please retry again");
+                alert.showAndWait();}
+        };
+
     }
 }

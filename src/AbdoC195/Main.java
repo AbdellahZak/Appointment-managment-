@@ -23,7 +23,6 @@ public class Main extends Application {
 
     public static void main(String[] args) throws SQLException {
         JDBC.makeConnection();
-        DbHelper.getCustomersDb();
         launch(args);
         JDBC.closeConnection();
     }

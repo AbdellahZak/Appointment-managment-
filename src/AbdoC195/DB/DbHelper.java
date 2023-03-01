@@ -1,6 +1,9 @@
 package AbdoC195.DB;
 
+import AbdoC195.Controllers.ControllerHelper;
 import AbdoC195.Model.Customer;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 import java.security.PublicKey;
 import java.sql.PreparedStatement;
@@ -8,6 +11,19 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public abstract class DbHelper {
+    public static int nextCustomerId = 0;
+
+    public static ObservableList<Customer> allCustomers= FXCollections.observableArrayList();
+
+    public static ObservableList<Customer> getCustomers(){
+        return allCustomers;
+    }
+
+    public static void addCustomer(Customer customer){
+        allCustomers.add(customer);
+    }
+
+
     public static int insert(String userID, String userPassword) throws SQLException {
         String sql = "INSERT INTO USERS (User_Name, Password) VALUES (?,?)";
         PreparedStatement ps= JDBC.connection.prepareStatement(sql);
@@ -43,7 +59,7 @@ public abstract class DbHelper {
 
     return false;
     }
-    public static Customer getCustomersDb() throws SQLException {
+    public static ObservableList<Customer> getCustomersDb() throws SQLException {
         String sql="SELECT Customer_ID, Customer_Name, Address, Postal_Code, Phone, Division_ID FROM customers";
         PreparedStatement ps=JDBC.connection.prepareStatement(sql);
         ResultSet rs=ps.executeQuery();
@@ -55,9 +71,9 @@ public abstract class DbHelper {
             String postal_Code= rs.getString("Postal_Code");
             String phone= rs.getString("Phone");
             int divison_ID =rs.getInt("Division_ID");
-            customer= new Customer(customer_Id,customer_Name,address,postal_Code,phone,divison_ID);
+            addCustomer(new Customer(customer_Id,customer_Name,address,postal_Code,phone,divison_ID));
         }
-        return customer;
+        return getCustomers();
     }
 
 
