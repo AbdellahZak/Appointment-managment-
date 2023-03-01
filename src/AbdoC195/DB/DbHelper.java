@@ -1,5 +1,6 @@
 package AbdoC195.DB;
 
+import AbdoC195.Model.Countries;
 import AbdoC195.Model.Customer;
 import AbdoC195.Model.Divison;
 import javafx.collections.FXCollections;
@@ -100,6 +101,32 @@ public abstract class DbHelper {
             addDiviosn(new Divison(division_Id,division,country_ID));
         }
         return getDivisions();
+    }
+
+
+    //////////////////////////////////////////////////////////////////////////////////// countries
+
+    public static ObservableList<Countries> allCountries= FXCollections.observableArrayList();
+
+    public static ObservableList<Countries> getCountries(){
+        return allCountries;
+    }
+
+    public static void addCountry(Countries country){
+        allCountries.add(country);
+    }
+
+    public static ObservableList<Countries> getCountriesDb() throws SQLException {
+        String sql="SELECT Country_ID, Country FROM countries";
+        PreparedStatement ps=JDBC.connection.prepareStatement(sql);
+        ResultSet rs=ps.executeQuery();
+        Customer customer = null;
+        while (rs.next()){
+            int country_Id= rs.getInt("Country_ID");
+            String country= rs.getString("Country");
+            addCountry(new Countries(country_Id, country));
+        }
+        return getCountries();
     }
 
 }
