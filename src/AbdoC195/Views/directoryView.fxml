@@ -14,6 +14,7 @@
             <TableView fx:id="directoryViewCustomerTable" layoutX="14.0" layoutY="44.0" prefHeight="122.0" prefWidth="678.0">
               <columns>
                 <TableColumn fx:id="directoryViewCustomerIdClmn" prefWidth="75.0" text="Customer ID" />
+                  <TableColumn fx:id="directoryViewCustomerNameClmn" prefWidth="75.0" text="Name" />
                 <TableColumn fx:id="directoryViewCustomerAddressClmn" prefWidth="125.0" text="Address" />
                   <TableColumn fx:id="directoryViewCustomerPostalCodeClmn" prefWidth="61.0" text="Postal code" />
                   <TableColumn fx:id="directoryViewCustomerPhoneNumberClmn" prefWidth="165.0" text="Phone number" />
