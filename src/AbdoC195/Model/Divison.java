@@ -34,4 +34,8 @@ public class Divison {
     public void setCountry_Id(int country_Id) {
         this.country_Id = country_Id;
     }
+    @Override
+    public String toString(){
+        return ("#" +Integer.toString(division_Id) +" "+ division );
+    }
 }
