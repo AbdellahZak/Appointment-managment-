@@ -11,19 +11,11 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public abstract class DbHelper {
-    public static int nextCustomerId = 0;
+    public static int nextCustomerId = 3;
 
-    ///////////////////////////////////////////////////////////////////////////////////////////// Customer
+    ///////////////////////////////////////////////////////////////////////////////////////////// Users
 
-    public static ObservableList<Customer> allCustomers= FXCollections.observableArrayList();
 
-    public static ObservableList<Customer> getCustomers() throws SQLException {
-        return getCustomersDb();
-    }
-
-    public static void addCustomer(Customer customer){
-        allCustomers.add(customer);
-    }
 
 
     public static int insert(String userID, String userPassword) throws SQLException {
@@ -61,6 +53,26 @@ public abstract class DbHelper {
 
     return false;
     }
+////////////////////////////////////////////////////////////////////////////////////////////////Customers
+    public static ObservableList<Customer> allCustomers= FXCollections.observableArrayList();
+
+    public static ObservableList<Customer> getCustomers() throws SQLException {
+        return getCustomersDb();
+    }
+
+    public static void addCustomer(Customer customer) throws SQLException {
+        String sql = "INSERT INTO CUSTOMERS (Customer_ID, Customer_Name,Address,Postal_Code,Phone,Division_ID) VALUES (?,?,?,?,?,?)";
+        PreparedStatement ps= JDBC.connection.prepareStatement(sql);
+        ps.setInt(1,customer.getCustomer_Id());
+        ps.setString(2,customer.getCustomer_Name());
+        ps.setString(3,customer.getAddress());
+        ps.setString(4,customer.getPostalCode());
+        ps.setString(5,customer.getPhoneNumber());
+        ps.setInt(6,customer.getFirst_levelD());
+        ps.executeUpdate();
+
+    }
+
     public static ObservableList<Customer> getCustomersDb() throws SQLException {
         String sql="SELECT Customer_ID, Customer_Name, Address, Postal_Code, Phone, Division_ID FROM customers";
         PreparedStatement ps=JDBC.connection.prepareStatement(sql);

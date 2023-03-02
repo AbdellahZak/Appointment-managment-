@@ -43,7 +43,7 @@ public class addCustomerController implements Initializable {
     public void addCustomerViewStatesCombo(ActionEvent actionEvent) {
 
     }
-    public void addCustomerViewAddBtn(ActionEvent actionEvent) {
+    public void addCustomerViewAddBtn(ActionEvent actionEvent) throws SQLException {
         int customer_Id= ++nextCustomerId;
         String customer_Name=addCustomerViewNameTxt.getText();
         String address=addCustomerViewAddressTxt.getText();
