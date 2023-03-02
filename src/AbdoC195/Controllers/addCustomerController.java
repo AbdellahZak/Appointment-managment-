@@ -23,10 +23,12 @@ public class addCustomerController implements Initializable {
     public TextField addCustomerViewPostalCodeTxt;
     public TextField addCustomerViewPhoneNumberTxt;
 
-    public void addCustomerViewCountriesCombo(ActionEvent actionEvent) {
+    public void addCustomerViewCountriesCombo(ActionEvent actionEvent) throws SQLException {
 
        Countries country= addCustomerViewCountriesComboStat.getSelectionModel().getSelectedItem();
        int countryId= country.getCountry_Id();
+       ObservableList<Divison> filteredStatesByCountry =FilterByCountryId(countryId);
+       addCustomerViewStateComboStat.setItems(filteredStatesByCountry);
     }
     public void addCustomerViewStatesCombo(ActionEvent actionEvent) {
         Divison divison= addCustomerViewStateComboStat.getSelectionModel().getSelectedItem();
@@ -47,10 +49,6 @@ public class addCustomerController implements Initializable {
             throwables.printStackTrace();
         }
         addCustomerViewStateComboStat.setPromptText("please select a state");
-        int countryId;
-        addCustomerViewStateComboStat.setItems(FilterByCountryId(countryId));
-
-
     }
 
 }
