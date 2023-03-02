@@ -57,27 +57,29 @@ public abstract class DbHelper {
     public static ObservableList<Customer> allCustomers= FXCollections.observableArrayList();
 
     public static ObservableList<Customer> getCustomers() throws SQLException {
-        return getCustomersDb();
+        return allCustomers;
+    }
+    public static void addCustomerList(Customer customer){
+        allCustomers.add(customer);
     }
 
     public static void addCustomer(Customer customer) throws SQLException {
-        String sql = "INSERT INTO CUSTOMERS (Customer_ID, Customer_Name,Address,Postal_Code,Phone,Division_ID) VALUES (?,?,?,?,?,?)";
+        String sql = "INSERT INTO CUSTOMERS (Customer_Name,Address,Postal_Code,Phone,Division_ID) VALUES (?,?,?,?,?)";
         PreparedStatement ps= JDBC.connection.prepareStatement(sql);
-        ps.setInt(1,customer.getCustomer_Id());
-        ps.setString(2,customer.getCustomer_Name());
-        ps.setString(3,customer.getAddress());
-        ps.setString(4,customer.getPostalCode());
-        ps.setString(5,customer.getPhoneNumber());
-        ps.setInt(6,customer.getFirst_levelD());
+       // ps.setInt(1,customer.getCustomer_Id());
+        ps.setString(1,customer.getCustomer_Name());
+        ps.setString(2,customer.getAddress());
+        ps.setString(3,customer.getPostalCode());
+        ps.setString(4,customer.getPhoneNumber());
+        ps.setInt(5,customer.getFirst_levelD());
         ps.executeUpdate();
 
     }
 
-    public static ObservableList<Customer> getCustomersDb() throws SQLException {
+    public static void getCustomersDb() throws SQLException {
         String sql="SELECT Customer_ID, Customer_Name, Address, Postal_Code, Phone, Division_ID FROM customers";
         PreparedStatement ps=JDBC.connection.prepareStatement(sql);
         ResultSet rs=ps.executeQuery();
-        Customer customer = null;
         while (rs.next()){
             int customer_Id= rs.getInt("Customer_ID");
             String customer_Name= rs.getString("Customer_name");
@@ -85,9 +87,14 @@ public abstract class DbHelper {
             String postal_Code= rs.getString("Postal_Code");
             String phone= rs.getString("Phone");
             int divison_ID =rs.getInt("Division_ID");
-            addCustomer(new Customer(customer_Id,customer_Name,address,postal_Code,phone,divison_ID));
+            addCustomerList(new Customer(customer_Id,customer_Name,address,postal_Code,phone,divison_ID));
         }
-        return allCustomers;
+    }
+    public static void deleteCustomerByIdDb(int customerId) throws SQLException {
+        String sql="DELETE FROM CUSTOMERS WHERE Customer_ID=?";
+        PreparedStatement ps= JDBC.connection.prepareStatement(sql);
+        ps.setInt(1,customerId);
+        ps.executeUpdate();
     }
 
     /////////////////////////////////////////////////////////////////////////////////////////////////////// Division

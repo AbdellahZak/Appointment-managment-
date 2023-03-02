@@ -1,6 +1,7 @@
 package AbdoC195.Controllers;
 
 import AbdoC195.DB.DbHelper;
+import AbdoC195.Model.Countries;
 import AbdoC195.Model.Customer;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -49,7 +50,11 @@ public class DirectoryController implements Initializable {
         stage.show();
     }
 
-    public void directoryViewCustomerDeleteButton(ActionEvent actionEvent) {
+    public void directoryViewCustomerDeleteButton(ActionEvent actionEvent) throws SQLException {
+        Customer customer= directoryViewCustomerTable.getSelectionModel().getSelectedItem();
+        DbHelper.allCustomers.remove(customer);
+        DbHelper.deleteCustomerByIdDb(customer.getCustomer_Id());
+
     }
 
     public void directoryViewCustomerUpdateButton(ActionEvent actionEvent) {
@@ -69,7 +74,12 @@ public class DirectoryController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        directoryViewCustomerTable.setItems(DbHelper.allCustomers);// filling tableView
+        try {
+            DbHelper.getCustomersDb();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        directoryViewCustomerTable.setItems(DbHelper.allCustomers);// filling tableVie
         directoryViewCustomerIdClmn.setCellValueFactory(new PropertyValueFactory<>("customer_Id"));
         directoryViewCustomerNameClmn.setCellValueFactory(new PropertyValueFactory<>("customer_Name"));
         directoryViewCustomerAddressClmn.setCellValueFactory(new PropertyValueFactory<>("address"));

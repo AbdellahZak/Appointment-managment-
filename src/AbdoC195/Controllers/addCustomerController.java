@@ -43,7 +43,7 @@ public class addCustomerController implements Initializable {
     public void addCustomerViewStatesCombo(ActionEvent actionEvent) {
 
     }
-    public void addCustomerViewAddBtn(ActionEvent actionEvent) throws SQLException {
+    public void addCustomerViewAddBtn(ActionEvent actionEvent) throws SQLException, IOException {
         int customer_Id= ++nextCustomerId;
         String customer_Name=addCustomerViewNameTxt.getText();
         String address=addCustomerViewAddressTxt.getText();
@@ -52,6 +52,10 @@ public class addCustomerController implements Initializable {
         Divison divison= addCustomerViewStateComboStat.getSelectionModel().getSelectedItem();
         int  first_levelD=divison.getDivision_Id();
         addCustomer(new Customer(customer_Id,customer_Name,address,postalCode,phoneNumber,first_levelD));
+        stage =(Stage)((Button)actionEvent.getSource()).getScene().getWindow();
+        scene = FXMLLoader.load(getClass().getResource("/AbdoC195/Views/directoryView.fxml"));
+        stage.setScene(new Scene(scene));
+        stage.show();
     }
     public void addCustomerViewCancelBtn(ActionEvent actionEvent) throws IOException {
         stage =(Stage)((Button)actionEvent.getSource()).getScene().getWindow();
