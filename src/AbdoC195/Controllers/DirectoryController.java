@@ -69,11 +69,7 @@ public class DirectoryController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        try {
-            directoryViewCustomerTable.setItems(DbHelper.getCustomersDb()); // filling tableView
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
-        }
+        directoryViewCustomerTable.setItems(DbHelper.allCustomers);// filling tableView
         directoryViewCustomerIdClmn.setCellValueFactory(new PropertyValueFactory<>("customer_Id"));
         directoryViewCustomerNameClmn.setCellValueFactory(new PropertyValueFactory<>("customer_Name"));
         directoryViewCustomerAddressClmn.setCellValueFactory(new PropertyValueFactory<>("address"));

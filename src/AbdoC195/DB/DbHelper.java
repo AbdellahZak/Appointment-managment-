@@ -17,8 +17,8 @@ public abstract class DbHelper {
 
     public static ObservableList<Customer> allCustomers= FXCollections.observableArrayList();
 
-    public static ObservableList<Customer> getCustomers(){
-        return allCustomers;
+    public static ObservableList<Customer> getCustomers() throws SQLException {
+        return getCustomersDb();
     }
 
     public static void addCustomer(Customer customer){
@@ -75,7 +75,7 @@ public abstract class DbHelper {
             int divison_ID =rs.getInt("Division_ID");
             addCustomer(new Customer(customer_Id,customer_Name,address,postal_Code,phone,divison_ID));
         }
-        return getCustomers();
+        return allCustomers;
     }
 
     /////////////////////////////////////////////////////////////////////////////////////////////////////// Division
