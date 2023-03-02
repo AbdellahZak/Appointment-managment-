@@ -17,20 +17,22 @@
                   <Font size="20.0" />
                </font>
             </Label>
-            <Label layoutX="34.0" layoutY="59.0" text="customer name" />
-            <Label layoutX="34.0" layoutY="84.0" text="Address" />
-            <Label layoutX="34.0" layoutY="110.0" text="Postal code" />
-            <Label layoutX="34.0" layoutY="136.0" text="Phone number" />
-            <Label layoutX="34.0" layoutY="186.0" text="Countries" />
-            <Label layoutX="268.0" layoutY="186.0" text="States" />
+            <Label layoutX="34.0" layoutY="83.0" text="customer name" />
+            <Label layoutX="34.0" layoutY="108.0" text="Address" />
+            <Label layoutX="34.0" layoutY="134.0" text="Postal code" />
+            <Label layoutX="34.0" layoutY="160.0" text="Phone number" />
+            <Label layoutX="34.0" layoutY="210.0" text="Countries" />
+            <Label layoutX="268.0" layoutY="210.0" text="States" />
             <Button layoutX="28.0" layoutY="299.0" mnemonicParsing="false" onAction="#addCustomerViewAddBtn" text="ADD" />
             <Button layoutX="130.0" layoutY="299.0" mnemonicParsing="false" onAction="#addCustomerViewCancelBtn" text="CANCEL" />
-            <ComboBox fx:id="addCustomerViewCountriesComboStat" layoutX="101.0" layoutY="182.0" onAction="#addCustomerViewCountriesCombo" prefWidth="150.0" />
-            <ComboBox fx:id="addCustomerViewStateComboStat" layoutX="329.0" layoutY="182.0" onAction="#addCustomerViewStatesCombo" prefWidth="150.0" />
-            <TextField fx:id="addCustomerViewNameTxt" layoutX="151.0" layoutY="55.0" />
-            <TextField fx:id="addCustomerViewAddressTxt" layoutX="151.0" layoutY="80.0" />
-            <TextField fx:id="addCustomerViewPostalCodeTxt" layoutX="151.0" layoutY="106.0" />
-            <TextField fx:id="addCustomerViewPhoneNumberTxt" layoutX="151.0" layoutY="132.0" />
+            <ComboBox fx:id="addCustomerViewCountriesComboStat" layoutX="101.0" layoutY="206.0" onAction="#addCustomerViewCountriesCombo" prefWidth="150.0" />
+            <ComboBox fx:id="addCustomerViewStateComboStat" layoutX="329.0" layoutY="206.0" onAction="#addCustomerViewStatesCombo" prefWidth="150.0" />
+            <TextField fx:id="addCustomerViewNameTxt" layoutX="151.0" layoutY="79.0" />
+            <TextField fx:id="addCustomerViewAddressTxt" layoutX="151.0" layoutY="104.0" />
+            <TextField fx:id="addCustomerViewPostalCodeTxt" layoutX="151.0" layoutY="129.0" />
+            <TextField fx:id="addCustomerViewPhoneNumberTxt" layoutX="151.0" layoutY="154.0" />
+            <Label layoutX="32.0" layoutY="55.0" text="customer ID" />
+            <TextField fx:id="addCustomerViewIdTxt" disable="true" editable="false" layoutX="151.0" layoutY="54.0" />
          </children>
       </AnchorPane>
    </children>

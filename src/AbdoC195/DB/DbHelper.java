@@ -13,6 +13,8 @@ import java.sql.SQLException;
 public abstract class DbHelper {
     public static int nextCustomerId = 0;
 
+    ///////////////////////////////////////////////////////////////////////////////////////////// Customer
+
     public static ObservableList<Customer> allCustomers= FXCollections.observableArrayList();
 
     public static ObservableList<Customer> getCustomers(){
