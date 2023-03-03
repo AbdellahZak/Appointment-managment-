@@ -197,9 +197,13 @@ public abstract class DbHelper {
         ps.setInt(5,appointment.getFirst_levelD());
         ps.executeUpdate();
     }*/
-
+/* SELECT Appointment_ID, Title, Description, Location,contacts.Contact_Name, Type, Start, End,Customer_ID,User_ID
+FROM appointments
+inner join contacts ON appointments.Contact_ID = contacts.Contact_ID*/
     public static void getAppointmentDb() throws SQLException {
-        String sql="SELECT Appointment_ID, Title, Description, Location,Contact_ID, Type, Start, End,Customer_ID,User_ID FROM appointments";
+        String sql="SELECT Appointment_ID, Title, Description, Location,contacts.Contact_Name, Type, Start, End,Customer_ID,User_ID\n" +
+                "FROM appointments\n" +
+                "inner join contacts ON appointments.Contact_ID = contacts.Contact_ID";
         PreparedStatement ps=JDBC.connection.prepareStatement(sql);
         ResultSet rs=ps.executeQuery();
         while (rs.next()){
@@ -207,7 +211,7 @@ public abstract class DbHelper {
             String title= rs.getString("Title");
             String description= rs.getString("Description");
             String location= rs.getString("Location");
-            int contactId=rs.getInt("Contact_ID");
+            String contact=rs.getString("Contact_Name");
             String type= rs.getString("Type");
             Timestamp startTimeStamp =rs.getTimestamp("Start");
             LocalDateTime start =UtcToLocalZoned(startTimeStamp);
@@ -215,7 +219,7 @@ public abstract class DbHelper {
             LocalDateTime end=UtcToLocalZoned(endTimeStamp);
             int customerId=rs.getInt("Customer_ID");
             int userId=rs.getInt("User_ID");
-            addAppointmentList (new Appointment(appointment_Id,title,description,location,contactId,type,start,end,customerId,userId));
+            addAppointmentList (new Appointment(appointment_Id,title,description,location,contact,type,start,end,customerId,userId));
         }
     }
     /*
