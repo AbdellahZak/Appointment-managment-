@@ -38,6 +38,7 @@
                <columns>
                   <TableColumn fx:id="directoryViewAppointmentIdClmn" prefWidth="42.0" text="Appointment ID" />
                   <TableColumn fx:id="directoryViewAppTitleClmn" prefWidth="34.0" text="Title" />
+                  <TableColumn fx:id="directoryViewAppDesciptionClmn" prefWidth="34.0" text="Description" />
                   <TableColumn fx:id="directoryViewAppLocationClmn" prefWidth="77.0" text="Location" />
                   <TableColumn fx:id="directoryViewAppContactClmn" prefWidth="54.0" text="Contact" />
                   <TableColumn fx:id="directoryViewAppTypeClmn" prefWidth="82.0" text="Type" />

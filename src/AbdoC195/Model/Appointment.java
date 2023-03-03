@@ -1,11 +1,9 @@
 package AbdoC195.Model;
 
-import java.sql.Timestamp;
 import java.time.LocalDateTime;
-import java.util.Date;
 
 public class Appointment {
-    private int appointment_Id;
+    private int appointmentId;
     private String title;
     private String description;
     private String location;
@@ -16,8 +14,8 @@ public class Appointment {
     private int customerId;
     private int userId;
 
-    public Appointment(int appointment_Id, String title, String description, String location, String contact, String type, LocalDateTime startDateTime, LocalDateTime endDateTime, int customerId, int userId) {
-        this.appointment_Id = appointment_Id;
+    public Appointment(int appointmentId, String title, String description, String location, String contact, String type, LocalDateTime startDateTime, LocalDateTime endDateTime, int customerId, int userId) {
+        this.appointmentId = appointmentId;
         this.title = title;
         this.description = description;
         this.location = location;
@@ -29,12 +27,12 @@ public class Appointment {
         this.userId = userId;
     }
 
-    public int getAppointment_Id() {
-        return appointment_Id;
+    public int getAppointmentId() {
+        return appointmentId;
     }
 
-    public void setAppointment_Id(int appointment_Id) {
-        this.appointment_Id = appointment_Id;
+    public void setAppointmentId(int appointmentId) {
+        this.appointmentId = appointmentId;
     }
 
     public String getTitle() {

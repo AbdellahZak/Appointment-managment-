@@ -21,6 +21,7 @@ import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 public class DirectoryController implements Initializable {
+
     Stage stage;
     Parent scene;
     public TableView<Customer> directoryViewCustomerTable;
@@ -33,6 +34,7 @@ public class DirectoryController implements Initializable {
     public TableView directoryViewAppTable;
     public TableColumn directoryViewAppointmentIdClmn;
     public TableColumn directoryViewAppTitleClmn;
+    public TableColumn directoryViewAppDesciptionClmn;
     public TableColumn directoryViewAppLocationClmn;
     public TableColumn directoryViewAppContactClmn;
     public TableColumn directoryViewAppTypeClmn;
@@ -105,12 +107,16 @@ public class DirectoryController implements Initializable {
             throwables.printStackTrace();
         }
         directoryViewAppTable.setItems(DbHelper.allAppointments);// filling tableVie
-        directoryViewCustomerIdClmn.setCellValueFactory(new PropertyValueFactory<>("customer_Id"));
-        directoryViewCustomerNameClmn.setCellValueFactory(new PropertyValueFactory<>("customer_Name"));
-        directoryViewCustomerAddressClmn.setCellValueFactory(new PropertyValueFactory<>("address"));
-        directoryViewCustomerPostalCodeClmn.setCellValueFactory(new PropertyValueFactory<>("postalCode"));
-        directoryViewCustomerPhoneNumberClmn.setCellValueFactory(new PropertyValueFactory<>("phoneNumber"));
-        directoryViewCustomerFirstLevelDClmn.setCellValueFactory(new PropertyValueFactory<>("first_levelD"));
+        directoryViewAppointmentIdClmn.setCellValueFactory(new PropertyValueFactory<>("appointmentId"));
+        directoryViewAppTitleClmn.setCellValueFactory(new PropertyValueFactory<>("title"));
+        directoryViewAppDesciptionClmn.setCellValueFactory(new PropertyValueFactory<>("description"));
+        directoryViewAppLocationClmn.setCellValueFactory(new PropertyValueFactory<>("location"));
+        directoryViewAppContactClmn.setCellValueFactory(new PropertyValueFactory<>("contact"));
+        directoryViewAppTypeClmn.setCellValueFactory(new PropertyValueFactory<>("type"));
+        directoryViewAppStartDateClmn.setCellValueFactory(new PropertyValueFactory<>("startDateTime"));
+        directoryViewAppEndDateClmn.setCellValueFactory(new PropertyValueFactory<>("endDateTime"));
+        directoryViewAppCustomerIdClmn.setCellValueFactory(new PropertyValueFactory<>("customerId"));
+        directoryViewAppUserIdClmn.setCellValueFactory(new PropertyValueFactory<>("userId"));
 
 
     }
