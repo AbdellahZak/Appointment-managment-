@@ -24,6 +24,7 @@ public class Main extends Application {
 
     public static void main(String[] args) throws SQLException {
         JDBC.makeConnection();
+        DbHelper.getAppointmentDb();
         launch(args);
         JDBC.closeConnection();
     }
