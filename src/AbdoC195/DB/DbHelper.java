@@ -243,9 +243,7 @@ public abstract class DbHelper {
 
     public static LocalDateTime UtcToLocalZoned(Timestamp dateTimeDb){
         LocalDateTime local=dateTimeDb.toLocalDateTime();
-        ZonedDateTime zoned1=local.atZone(ZoneId.of("UTC"));
-        ZonedDateTime zoned2=zoned1.withZoneSameInstant(ZoneId.systemDefault());
-        return zoned2.toLocalDateTime();
+        return local;
     }
 
 

@@ -83,6 +83,7 @@ public class DirectoryController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        ///////////customer Table Init
         DbHelper.allCustomers.clear();
         try {
             DbHelper.getCustomersDb();
@@ -96,6 +97,21 @@ public class DirectoryController implements Initializable {
         directoryViewCustomerPostalCodeClmn.setCellValueFactory(new PropertyValueFactory<>("postalCode"));
         directoryViewCustomerPhoneNumberClmn.setCellValueFactory(new PropertyValueFactory<>("phoneNumber"));
         directoryViewCustomerFirstLevelDClmn.setCellValueFactory(new PropertyValueFactory<>("first_levelD"));
+        /////////////Appointment Table init
+        DbHelper.allAppointments.clear();
+        try {
+            DbHelper.getAppointmentDb();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        directoryViewAppTable.setItems(DbHelper.allAppointments);// filling tableVie
+        directoryViewCustomerIdClmn.setCellValueFactory(new PropertyValueFactory<>("customer_Id"));
+        directoryViewCustomerNameClmn.setCellValueFactory(new PropertyValueFactory<>("customer_Name"));
+        directoryViewCustomerAddressClmn.setCellValueFactory(new PropertyValueFactory<>("address"));
+        directoryViewCustomerPostalCodeClmn.setCellValueFactory(new PropertyValueFactory<>("postalCode"));
+        directoryViewCustomerPhoneNumberClmn.setCellValueFactory(new PropertyValueFactory<>("phoneNumber"));
+        directoryViewCustomerFirstLevelDClmn.setCellValueFactory(new PropertyValueFactory<>("first_levelD"));
+
 
     }
 }
