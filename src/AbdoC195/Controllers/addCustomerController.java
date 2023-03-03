@@ -44,7 +44,7 @@ public class addCustomerController implements Initializable {
 
     }
     public void addCustomerViewAddBtn(ActionEvent actionEvent) throws SQLException, IOException {
-        int customer_Id= ++nextCustomerId;
+        int customer_Id=0;
         String customer_Name=addCustomerViewNameTxt.getText();
         String address=addCustomerViewAddressTxt.getText();
         String postalCode=addCustomerViewPostalCodeTxt.getText();
@@ -66,7 +66,6 @@ public class addCustomerController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        addCustomerViewIdTxt.setText(String.valueOf(nextCustomerId));
         addCustomerViewCountriesComboStat.setPromptText("PLease select a country");
         try {
             addCustomerViewCountriesComboStat.setItems(getCountriesDb());

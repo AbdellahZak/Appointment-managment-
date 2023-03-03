@@ -73,7 +73,6 @@ public abstract class DbHelper {
         ps.setString(4,customer.getPhoneNumber());
         ps.setInt(5,customer.getFirst_levelD());
         ps.executeUpdate();
-
     }
 
     public static void getCustomersDb() throws SQLException {
@@ -87,7 +86,7 @@ public abstract class DbHelper {
             String postal_Code= rs.getString("Postal_Code");
             String phone= rs.getString("Phone");
             int divison_ID =rs.getInt("Division_ID");
-            addCustomerList(new Customer(customer_Id,customer_Name,address,postal_Code,phone,divison_ID));
+            addCustomerList (new Customer(customer_Id,customer_Name,address,postal_Code,phone,divison_ID));
         }
     }
     public static void deleteCustomerByIdDb(int customerId) throws SQLException {
