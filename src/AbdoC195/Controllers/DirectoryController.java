@@ -59,7 +59,7 @@ public class DirectoryController implements Initializable {
 
     public void directoryViewCustomerUpdateButton(ActionEvent actionEvent) throws IOException {
         FXMLLoader loader= new FXMLLoader();    //passing selecxted object when modify button is clicked to mod part view
-        loader.setLocation(getClass().getResource("modifyCustomer.fxml"));
+        loader.setLocation(getClass().getResource("/AbdoC195/Views/modifyCustomer.fxml"));
         Parent modPartMenu =loader.load();
         Scene scene =new Scene(modPartMenu);
         modifyCustomerController pass=loader.getController();
