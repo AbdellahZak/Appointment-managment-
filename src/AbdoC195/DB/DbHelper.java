@@ -95,6 +95,17 @@ public abstract class DbHelper {
         ps.setInt(1,customerId);
         ps.executeUpdate();
     }
+    public static void updateCustomerRowById(Customer customer) throws SQLException {
+        String sql = "UPDATE CUSTOMERS SET Customer_Name=?,Address=?,Postal_Code=?,Phone=?,Division_ID=? WHERE Customer_ID=?";
+        PreparedStatement ps= JDBC.connection.prepareStatement(sql);
+        ps.setInt(6,customer.getCustomer_Id());
+        ps.setString(1,customer.getCustomer_Name());
+        ps.setString(2,customer.getAddress());
+        ps.setString(3,customer.getPostalCode());
+        ps.setString(4,customer.getPhoneNumber());
+        ps.setInt(5,customer.getFirst_levelD());
+        ps.executeUpdate();
+    }
 
     /////////////////////////////////////////////////////////////////////////////////////////////////////// Division
 

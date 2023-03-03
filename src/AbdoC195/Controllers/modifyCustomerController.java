@@ -1,5 +1,6 @@
 package AbdoC195.Controllers;
 
+import AbdoC195.DB.DbHelper;
 import AbdoC195.Model.Countries;
 import AbdoC195.Model.Customer;
 import AbdoC195.Model.Divison;
@@ -31,12 +32,22 @@ public class modifyCustomerController implements Initializable {
     public TextField modifyCustomerViewAddressTxt;
     public TextField modifyCustomerViewPostalCodeTxt;
     public TextField modifyCustomerViewPhoneNumberTxt;
-    public ComboBox addCustomerViewStateComboStat;
     public ComboBox<Countries> modifyCustomerViewCountriesComboStat;
     public ComboBox<Divison> modifyCustomerViewStateComboStat;
 
 
-    public void modifyCustomerViewmodifyBtn(ActionEvent actionEvent) {
+    public void modifyCustomerViewmodifyBtn(ActionEvent actionEvent) throws SQLException, IOException {
+        Integer customerId= Integer.parseInt(modifyCustomerViewIdTxt.getText());
+        String customerName= modifyCustomerViewNameTxt.getText();
+        String customerAdrress=modifyCustomerViewAddressTxt.getText();
+        String customerPostalCode= modifyCustomerViewPostalCodeTxt.getText();
+        String customerPhoneNumber= modifyCustomerViewPhoneNumberTxt.getText();
+        int divisionId= modifyCustomerViewStateComboStat.getSelectionModel().getSelectedItem().getDivision_Id();
+        DbHelper.updateCustomerRowById(new Customer(customerId,customerName,customerAdrress,customerPostalCode,customerPhoneNumber,divisionId));
+        stage =(Stage)((Button)actionEvent.getSource()).getScene().getWindow();
+        scene = FXMLLoader.load(getClass().getResource("/AbdoC195/Views/directoryView.fxml"));
+        stage.setScene(new Scene(scene));
+        stage.show();
     }
 
     public void modifyCustomerViewCancelBtn(ActionEvent actionEvent) throws IOException {
@@ -44,8 +55,7 @@ public class modifyCustomerController implements Initializable {
         scene = FXMLLoader.load(getClass().getResource("/AbdoC195/Views/directoryView.fxml"));
         stage.setScene(new Scene(scene));
         stage.show();
-        modifyCustomerViewCountriesComboStat.setPromptText("PLease select a country");
-        modifyCustomerViewStateComboStat.setPromptText("please select a state");
+
 
     }
     public void passCustomer(Customer customer){
@@ -54,6 +64,8 @@ public class modifyCustomerController implements Initializable {
         modifyCustomerViewAddressTxt.setText(customer.getAddress());
         modifyCustomerViewPhoneNumberTxt.setText(customer.getPhoneNumber());
         modifyCustomerViewPostalCodeTxt.setText(customer.getPostalCode());
+        modifyCustomerViewCountriesComboStat.setPromptText("PLease select a country");
+        modifyCustomerViewStateComboStat.setPromptText("please select a state");
     }
 
 
