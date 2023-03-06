@@ -46,7 +46,7 @@
                         <Font size="20.0" />
                     </font>
                 </Label>
-                <Button layoutX="28.0" layoutY="323.0" mnemonicParsing="false" onAction="#updateAppViewAddBtn" text="ADD" />
+                <Button layoutX="28.0" layoutY="323.0" mnemonicParsing="false" onAction="#updateAppViewUpdateBtn" text="UPDATE" />
                 <Button layoutX="130.0" layoutY="323.0" mnemonicParsing="false" onAction="#updateAppViewCancelBtn" text="CANCEL" />
             <ComboBox fx:id="updateAppViewStartHourPickerCombo" layoutX="357.0" layoutY="211.0" prefHeight="25.0" prefWidth="97.0" />
             <ComboBox fx:id="updateAppViewStartMinutePickerCombo" layoutX="499.0" layoutY="211.0" prefHeight="25.0" prefWidth="97.0" />

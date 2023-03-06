@@ -65,14 +65,16 @@ public class updateAppointmentController implements Initializable {
         updateAppViewEndMinutePickerCombo.setPromptText(endMinute);
 
     }
-    public void updateAppViewAddBtn(ActionEvent actionEvent) {
-    }
 
-    public void updateAppViewCancelBtn(ActionEvent actionEvent) throws IOException {
+    public void updateAppViewUpdateBtn(ActionEvent actionEvent) throws IOException {
         stage =(Stage)((Button)actionEvent.getSource()).getScene().getWindow();
         scene = FXMLLoader.load(getClass().getResource("/AbdoC195/Views/directoryView.fxml"));
         stage.setScene(new Scene(scene));
         stage.show();
+    }
+
+    public void updateAppViewCancelBtn(ActionEvent actionEvent) throws IOException {
+
     }
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
