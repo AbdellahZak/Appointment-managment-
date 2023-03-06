@@ -201,17 +201,22 @@ public abstract class DbHelper {
     }
 
    public static void addAppointment(Appointment appointment) throws SQLException {
-        String sql = "INSERT INTO CUSTOMERS (Customer_Name,Address,Postal_Code,Phone,Division_ID) VALUES (?,?,?,?,?)";
+        String sql = "INSERT INTO APPOintments (Title,Description,Location,Type,Contact_ID,Start, End, Customer_ID, User_ID ) VALUES (?,?,?,?,?,?,?,?,?)";
         PreparedStatement ps= JDBC.connection.prepareStatement(sql);
         // ps.setInt(1,customer.getCustomer_Id());
         ps.setString(1,appointment.getTitle());
         ps.setString(2,appointment.getDescription());
         ps.setString(3,appointment.getLocation());
-        ps.setString(4,appointment.getContact());
-        ps.setString(5,appointment.getType());
-        ps.setString(4,appointment.getContact());
-        Timestamp startTimeDate= appointment.getStartDateTime().
-        ps.setInt(5,appointment.getFirst_levelD());
+        ps.setString(4,appointment.getType());
+        ps.setInt(5,appointment.getContactId());
+        LocalDateTime localStart=appointment.getStartDateTime();
+        Timestamp startTimeDate= LocalToTimestamp(localStart);
+        ps.setTimestamp(6,startTimeDate);
+        LocalDateTime localEnd=appointment.getEndDateTime();
+        Timestamp endTimeDate= LocalToTimestamp(localEnd);
+        ps.setTimestamp(7,startTimeDate);
+        ps.setInt(8,appointment.getCustomerId());
+        ps.setInt(9,appointment.getUserId());
         ps.executeUpdate();
     }
 
@@ -237,24 +242,25 @@ public abstract class DbHelper {
             addAppointmentList (new Appointment(appointment_Id,title,description,location,contact,type,start,end,customerId,userId));
         }
     }
-    /*
+
     public static void deleteAppointmentByIdDb(int customerId) throws SQLException {
-        String sql="DELETE FROM CUSTOMERS WHERE Customer_ID=?";
+        String sql="DELETE FROM appointments WHERE Appointment_ID=?";
         PreparedStatement ps= JDBC.connection.prepareStatement(sql);
         ps.setInt(1,customerId);
         ps.executeUpdate();
     }
-    public static void updateAppointmentRowById(Customer customer) throws SQLException {
-        String sql = "UPDATE CUSTOMERS SET Customer_Name=?,Address=?,Postal_Code=?,Phone=?,Division_ID=? WHERE Customer_ID=?";
-        PreparedStatement ps= JDBC.connection.prepareStatement(sql);
-        ps.setInt(6,customer.getCustomer_Id());
-        ps.setString(1,customer.getCustomer_Name());
-        ps.setString(2,customer.getAddress());
-        ps.setString(3,customer.getPostalCode());
-        ps.setString(4,customer.getPhoneNumber());
-        ps.setInt(5,customer.getFirst_levelD());
-        ps.executeUpdate();
-    } */
+    /*
+  public static void updateAppointmentRowById(Customer customer) throws SQLException {
+      String sql = "UPDATE CUSTOMERS SET Customer_Name=?,Address=?,Postal_Code=?,Phone=?,Division_ID=? WHERE Customer_ID=?";
+      PreparedStatement ps= JDBC.connection.prepareStatement(sql);
+      ps.setInt(6,customer.getCustomer_Id());
+      ps.setString(1,customer.getCustomer_Name());
+      ps.setString(2,customer.getAddress());
+      ps.setString(3,customer.getPostalCode());
+      ps.setString(4,customer.getPhoneNumber());
+      ps.setInt(5,customer.getFirst_levelD());
+      ps.executeUpdate();
+  } */
     /////////////////////////////////////////////////////Contact//////////////////////////////////////////////////////////////
     public static ObservableList<Contact> allContacts= FXCollections.observableArrayList();
 
@@ -287,7 +293,10 @@ public abstract class DbHelper {
         return local;
     }
     //localdatetime to timestamp
-    public static Timestamp LocalToTimestamp(LocalDateTime localDateTime){}
+    public static Timestamp LocalToTimestamp(LocalDateTime localDateTime){
+        Timestamp time=Timestamp.valueOf(localDateTime);
+        return time;
+    }
 
     ////////////////////////////////////////////////// ComboBox hour minute ///////////////////////////////////////////////////////////////
 

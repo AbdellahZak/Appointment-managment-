@@ -48,14 +48,14 @@
                 </Label>
                 <Button layoutX="28.0" layoutY="323.0" mnemonicParsing="false" onAction="#addAppViewAddBtn" text="ADD" />
                 <Button layoutX="130.0" layoutY="323.0" mnemonicParsing="false" onAction="#addAppViewCancelBtn" text="CANCEL" />
-            <ComboBox fx:id="addAppViewStartHourPickerCombo" layoutX="357.0" layoutY="211.0" prefHeight="25.0" prefWidth="26.0" />
-            <ComboBox fx:id="addAppViewStartMinutePickerCombo" layoutX="457.0" layoutY="211.0" prefHeight="25.0" prefWidth="26.0" />
-            <ComboBox fx:id="addAppViewEndHourPickerCombo" layoutX="357.0" layoutY="236.0" prefHeight="25.0" prefWidth="26.0" />
-            <ComboBox fx:id="addAppViewEndMinutePickerCombo" layoutX="457.0" layoutY="236.0" prefHeight="25.0" prefWidth="26.0" />
+            <ComboBox fx:id="addAppViewStartHourPickerCombo" layoutX="357.0" layoutY="211.0" prefHeight="25.0" prefWidth="97.0" />
+            <ComboBox fx:id="addAppViewStartMinutePickerCombo" layoutX="499.0" layoutY="211.0" prefHeight="25.0" prefWidth="97.0" />
+            <ComboBox fx:id="addAppViewEndHourPickerCombo" layoutX="357.0" layoutY="236.0" prefHeight="25.0" prefWidth="97.0" />
+            <ComboBox fx:id="addAppViewEndMinutePickerCombo" layoutX="499.0" layoutY="236.0" prefHeight="25.0" prefWidth="97.0" />
             <Label layoutX="322.0" layoutY="215.0" text="Hour" />
             <Label layoutX="322.0" layoutY="240.0" text="Hour" />
-            <Label layoutX="415.0" layoutY="215.0" text="Minute" />
-            <Label layoutX="415.0" layoutY="240.0" text="Minute" />
+            <Label layoutX="457.0" layoutY="215.0" text="Minute" />
+            <Label layoutX="457.0" layoutY="240.0" text="Minute" />
             </children>
         </AnchorPane>
     </children>

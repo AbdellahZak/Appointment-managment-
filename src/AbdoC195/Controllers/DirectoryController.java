@@ -1,6 +1,7 @@
 package AbdoC195.Controllers;
 
 import AbdoC195.DB.DbHelper;
+import AbdoC195.Model.Appointment;
 import AbdoC195.Model.Countries;
 import AbdoC195.Model.Customer;
 import javafx.event.ActionEvent;
@@ -31,7 +32,7 @@ public class DirectoryController implements Initializable {
     public TableColumn<Customer,String> directoryViewCustomerPostalCodeClmn;
     public TableColumn<Customer,String> directoryViewCustomerPhoneNumberClmn;
     public TableColumn<Customer,String> directoryViewCustomerFirstLevelDClmn;
-    public TableView directoryViewAppTable;
+    public TableView<Appointment> directoryViewAppTable;
     public TableColumn directoryViewAppointmentIdClmn;
     public TableColumn directoryViewAppTitleClmn;
     public TableColumn directoryViewAppDesciptionClmn;
@@ -81,7 +82,10 @@ public class DirectoryController implements Initializable {
         stage.show();
     }
 
-    public void directoryViewAppDeleteButton(ActionEvent actionEvent) {
+    public void directoryViewAppDeleteButton(ActionEvent actionEvent) throws SQLException {
+        Appointment appointment= directoryViewAppTable.getSelectionModel().getSelectedItem();
+        DbHelper.allAppointments.remove(appointment);
+        DbHelper.deleteAppointmentByIdDb(appointment.getAppointmentId());
     }
 
     public void directoryViewAppUpdateButton(ActionEvent actionEvent) {

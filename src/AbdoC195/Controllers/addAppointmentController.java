@@ -67,7 +67,7 @@ public class addAppointmentController implements Initializable {
         String location =addAppViewLocationTxt.getText();
         String type= addAppViewTypeTxt.getText();
         Contact contactObject=addAppViewContactComboStat.getSelectionModel().getSelectedItem();
-        String contact=contactObject.getContactName();
+        int contactId=contactObject.getContactId();
         LocalDate startDate = addAppViewStartDatePicker.getValue();
         LocalDate endDate = addAppViewEndDatePicker.getValue();
         String startHour = addAppViewStartHourPickerCombo.getValue().toString();
@@ -80,7 +80,7 @@ public class addAppointmentController implements Initializable {
         int customerId=customerObject.getCustomer_Id();
         User userObject=addAppViewUserIdComboStat.getSelectionModel().getSelectedItem();
         int userId=userObject.getUser_ID();
-        DbHelper.addAppointment(new Appointment(appointmentId,title,description,location,contact,type,ldtStart,ldtEnd,customerId,userId));
+        DbHelper.addAppointment(new Appointment(appointmentId,title,description,location,contactId,type,ldtStart,ldtEnd,customerId,userId));
         stage =(Stage)((Button)actionEvent.getSource()).getScene().getWindow();
         scene = FXMLLoader.load(getClass().getResource("/AbdoC195/Views/directoryView.fxml"));
         stage.setScene(new Scene(scene));
