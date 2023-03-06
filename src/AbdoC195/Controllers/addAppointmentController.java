@@ -4,6 +4,7 @@ import AbdoC195.DB.DbHelper;
 import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 
 import java.net.URL;
@@ -21,6 +22,8 @@ public class addAppointmentController implements Initializable {
     public ComboBox addAppViewEndTimeComboStat;
     public TextField addAppViewCustomerIdTxt;
     public TextField addAppViewUserIdTxt;
+    public DatePicker addAppViewStartDatePicker;
+    public DatePicker addAppViewEndDatePicker;
 
     public void addAppViewStartTimeCombo(ActionEvent actionEvent) {
     }

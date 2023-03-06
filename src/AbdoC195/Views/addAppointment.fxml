@@ -2,6 +2,7 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -12,35 +13,41 @@
     <children>
         <AnchorPane prefHeight="394.0" prefWidth="600.0">
             <children>
-            <VBox layoutX="139.0" layoutY="48.0" prefHeight="266.0" prefWidth="174.0" />
-            <VBox layoutX="22.0" layoutY="48.0" prefHeight="266.0" prefWidth="123.0" />
+            <VBox layoutX="139.0" layoutY="48.0" prefHeight="266.0" prefWidth="174.0" spacing="2.0">
+               <children>
+                      <TextField fx:id="addAppViewAppIdTxt" disable="true" editable="false" />
+                      <TextField fx:id="addAppViewTitleTxt" />
+                      <TextField fx:id="addAppViewDescriptionTxt" />
+                      <TextField fx:id="addAppViewLocationTxt" />
+                  <ComboBox fx:id="addAppViewContactComboStat" onAction="#addAppViewContactComboStat" prefHeight="25.0" prefWidth="178.0" />
+                  <TextField fx:id="addAppViewTypeTxt" />
+                  <DatePicker fx:id="addAppViewStartDatePicker" />
+                  <DatePicker fx:id="addAppViewEndDatePicker" />
+                  <TextField fx:id="addAppViewCustomerIdTxt" />
+                  <TextField fx:id="addAppViewUserIdTxt" />
+               </children>
+            </VBox>
+            <VBox layoutX="22.0" layoutY="48.0" prefHeight="266.0" prefWidth="123.0" spacing="10.0">
+               <children>
+                      <Label text="Appointment ID" />
+                      <Label text="Title" />
+                      <Label text="Description" />
+                      <Label text="Location" />
+                      <Label text="Contact" />
+                  <Label text="Type" />
+                      <Label text="Start time and Date" />
+                      <Label text="End time and date" />
+                  <Label text="Customer ID" />
+                  <Label text="User ID" />
+               </children>
+            </VBox>
                 <Label layoutX="21.0" layoutY="14.0" text="ADD APPOINTMENT">
                     <font>
                         <Font size="20.0" />
                     </font>
                 </Label>
-                <Label layoutX="34.0" layoutY="83.0" text="Title" />
-                <Label layoutX="34.0" layoutY="108.0" text="Description" />
-                <Label layoutX="34.0" layoutY="134.0" text="Location" />
-                <Label layoutX="34.0" layoutY="160.0" text="Contact" />
-                <Label layoutX="34.0" layoutY="210.0" text="Start time and Date" />
-                <Label layoutX="34.0" layoutY="233.0" text="End time and date" />
                 <Button layoutX="28.0" layoutY="323.0" mnemonicParsing="false" onAction="#addAppViewAddBtn" text="ADD" />
                 <Button layoutX="130.0" layoutY="323.0" mnemonicParsing="false" onAction="#addAppViewCancelBtn" text="CANCEL" />
-                <ComboBox fx:id="addAppViewStartTimeComboStat" layoutX="150.0" layoutY="204.0" onAction="#addAppViewStartTimeCombo" prefWidth="150.0" />
-                <ComboBox fx:id="addAppViewEndTimeComboStat" layoutX="149.0" layoutY="230.0" onAction="#addAppViewEndTimeCombo" prefWidth="150.0" />
-                <TextField fx:id="addAppViewTitleTxt" layoutX="151.0" layoutY="79.0" />
-                <TextField fx:id="addAppViewDescriptionTxt" layoutX="151.0" layoutY="104.0" />
-                <TextField fx:id="addAppViewLocationTxt" layoutX="151.0" layoutY="129.0" />
-                <Label layoutX="32.0" layoutY="55.0" text="Appointment ID" />
-            <Label layoutX="33.0" layoutY="184.0" text="Type" />
-            <TextField fx:id="addAppViewTypeTxt" layoutX="150.0" layoutY="179.0" />
-            <ComboBox fx:id="addAppViewContactComboStat" layoutX="151.0" layoutY="154.0" onAction="#addAppViewContactComboStat" prefWidth="150.0" />
-            <Label layoutX="33.0" layoutY="286.0" text="User ID" />
-            <TextField fx:id="addAppViewUserIdTxt" layoutX="149.0" layoutY="281.0" />
-            <Label layoutX="34.0" layoutY="263.0" text="Customer ID" />
-            <TextField fx:id="addAppViewCustomerIdTxt" layoutX="149.0" layoutY="255.0" />
-                <TextField fx:id="addAppViewAppIdTxt" disable="true" editable="false" layoutX="151.0" layoutY="54.0" />
             </children>
         </AnchorPane>
     </children>
