@@ -55,7 +55,14 @@ public class updateAppointmentController implements Initializable {
         LocalDate endDate=appointment.getStartDateTime().toLocalDate();
         updateAppViewStartDatePicker.setPromptText(startDate.toString());
         updateAppViewEndDatePicker.setPromptText(endDate.toString());
-        String
+        String startHour = String.valueOf(appointment.getStartDateTime().getHour());
+        String startMinute = String.valueOf(appointment.getStartDateTime().getMinute());
+        String endHour = String.valueOf(appointment.getEndDateTime().getHour());
+        String endMinute = String.valueOf(appointment.getEndDateTime().getMinute());
+        updateAppViewStartHourPickerCombo.setPromptText(startHour);
+        updateAppViewEndHourPickerCombo.setPromptText(endHour);
+        updateAppViewStartMinutePickerCombo.setPromptText(startMinute);
+        updateAppViewEndMinutePickerCombo.setPromptText(endMinute);
 
     }
     public void updateAppViewAddBtn(ActionEvent actionEvent) {
