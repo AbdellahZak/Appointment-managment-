@@ -90,7 +90,7 @@ public class DirectoryController implements Initializable {
 
     public void directoryViewAppUpdateButton(ActionEvent actionEvent) throws IOException {
         FXMLLoader loader= new FXMLLoader();    //passing selecxted object when modify button is clicked to mod part view
-        loader.setLocation(getClass().getResource("/AbdoC195/Views/updateAppointmentController.fxml"));
+        loader.setLocation(getClass().getResource("/AbdoC195/Views/updateAppointment.fxml"));
         Parent modPartMenu =loader.load();
         Scene scene =new Scene(modPartMenu);
         updateAppointmentController pass=loader.getController();
