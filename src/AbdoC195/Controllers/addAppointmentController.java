@@ -96,17 +96,21 @@ public class addAppointmentController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        DbHelper.allUsers.clear();
+        DbHelper.allContacts.clear();
         try {
-            addAppViewContactComboStat.setItems(DbHelper.getContactsDb());
+            DbHelper.getContactsDb();
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
+        addAppViewContactComboStat.setItems(DbHelper.allContacts);
         addAppViewCustomerIdComboStat.setItems(DbHelper.allCustomers);
         try {
-            addAppViewUserIdComboStat.setItems(DbHelper.getUsersDb());
+            DbHelper.getUsersDb();
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
+        addAppViewUserIdComboStat.setItems(DbHelper.allUsers);
         hours.addAll("00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11",
                 "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23");
         minutes.addAll("00", "15", "30", "45");

@@ -18,11 +18,11 @@ public abstract class DbHelper {
         return allUsers;
     }
 
-    public static void addUser(User user){
+    public static void addUserList(User user){
         allUsers.add(user);
     }
 
-    public static ObservableList<User> getUsersDb() throws SQLException {
+    public static void getUsersDb() throws SQLException {
         String sql="SELECT User_ID, User_Name,Password FROM users";
         PreparedStatement ps=JDBC.connection.prepareStatement(sql);
         ResultSet rs=ps.executeQuery();
@@ -31,9 +31,8 @@ public abstract class DbHelper {
             int userId= rs.getInt("User_ID");
             String userName= rs.getString("User_Name");
             String password= rs.getString("Password");
-            addUser(new User(userId, userName,password));
+            addUserList(new User(userId, userName,password));
         }
-        return getUsers();
     }
 
 
@@ -203,7 +202,6 @@ public abstract class DbHelper {
    public static void addAppointment(Appointment appointment) throws SQLException {
         String sql = "INSERT INTO APPOintments (Title,Description,Location,Type,Contact_ID,Start, End, Customer_ID, User_ID ) VALUES (?,?,?,?,?,?,?,?,?)";
         PreparedStatement ps= JDBC.connection.prepareStatement(sql);
-        // ps.setInt(1,customer.getCustomer_Id());
         ps.setString(1,appointment.getTitle());
         ps.setString(2,appointment.getDescription());
         ps.setString(3,appointment.getLocation());
@@ -214,7 +212,7 @@ public abstract class DbHelper {
         ps.setTimestamp(6,startTimeDate);
         LocalDateTime localEnd=appointment.getEndDateTime();
         Timestamp endTimeDate= LocalToTimestamp(localEnd);
-        ps.setTimestamp(7,startTimeDate);
+        ps.setTimestamp(7,endTimeDate);
         ps.setInt(8,appointment.getCustomerId());
         ps.setInt(9,appointment.getUserId());
         ps.executeUpdate();
