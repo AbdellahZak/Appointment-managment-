@@ -18,6 +18,7 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.ResourceBundle;
 
 public class updateAppointmentController implements Initializable {
@@ -50,6 +51,11 @@ public class updateAppointmentController implements Initializable {
         updateAppViewTypeTxt.setText(appointment.getType());
         updateAppViewCustomerIdComboStat.setPromptText(Integer.toString(appointment.getCustomerId()));
         updateAppViewUserIdComboStat.setPromptText(Integer.toString(appointment.getUserId()));
+        LocalDate startDate=appointment.getStartDateTime().toLocalDate();
+        LocalDate endDate=appointment.getStartDateTime().toLocalDate();
+        updateAppViewStartDatePicker.setPromptText(startDate.toString());
+        updateAppViewEndDatePicker.setPromptText(endDate.toString());
+        String
 
     }
     public void updateAppViewAddBtn(ActionEvent actionEvent) {
