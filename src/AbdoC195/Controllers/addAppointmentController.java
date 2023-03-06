@@ -1,6 +1,7 @@
 package AbdoC195.Controllers;
 
 import AbdoC195.DB.DbHelper;
+import AbdoC195.Model.Contact;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -22,6 +23,7 @@ import java.time.LocalDateTime;
 import java.util.ResourceBundle;
 
 public class addAppointmentController implements Initializable {
+
     Stage stage;
     Parent scene;
     public TextField addAppViewAppIdTxt;
@@ -29,7 +31,7 @@ public class addAppointmentController implements Initializable {
     public TextField addAppViewDescriptionTxt;
     public TextField addAppViewLocationTxt;
     public TextField addAppViewTypeTxt;
-    public ComboBox addAppViewContactComboStat;
+    public ComboBox<Contact> addAppViewContactComboStat;
     public ComboBox addAppViewStartTimeComboStat;
     public ComboBox addAppViewEndTimeComboStat;
     public TextField addAppViewCustomerIdTxt;
@@ -40,6 +42,8 @@ public class addAppointmentController implements Initializable {
     public ComboBox addAppViewStartMinutePickerCombo;
     public ComboBox addAppViewEndHourPickerCombo;
     public ComboBox addAppViewEndMinutePickerCombo;
+    public ComboBox addAppViewCustomerIdComboStat;
+    public ComboBox addAppViewUserIdComboStat;
     ObservableList<String> hours = FXCollections.observableArrayList(); // from the code repository.
     ObservableList<String> minutes = FXCollections.observableArrayList();
 
@@ -54,6 +58,12 @@ public class addAppointmentController implements Initializable {
     }
 
     public void addAppViewAddBtn(ActionEvent actionEvent) throws IOException {
+        String title=addAppViewTitleTxt.getText();
+        String description=addAppViewDescriptionTxt.getText();
+        String location =addAppViewLocationTxt.getText();
+        String type= addAppViewTypeTxt.getText();
+        Contact contactObject=addAppViewContactComboStat.getSelectionModel().getSelectedItem();
+        String contact=contactObject.getContactName();
         LocalDate startDate = addAppViewStartDatePicker.getValue();
         LocalDate endDate = addAppViewEndDatePicker.getValue();
         String startHour = addAppViewStartHourPickerCombo.getValue().toString();

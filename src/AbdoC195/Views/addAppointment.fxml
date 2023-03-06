@@ -23,8 +23,8 @@
                   <TextField fx:id="addAppViewTypeTxt" />
                   <DatePicker fx:id="addAppViewStartDatePicker" />
                   <DatePicker fx:id="addAppViewEndDatePicker" />
-                  <TextField fx:id="addAppViewCustomerIdTxt" />
-                  <TextField fx:id="addAppViewUserIdTxt" />
+                  <ComboBox fx:id="addAppViewCustomerIdComboStat" prefHeight="25.0" prefWidth="180.0" />
+                  <ComboBox fx:id="addAppViewUserIdComboStat" prefHeight="25.0" prefWidth="179.0" />
                </children>
             </VBox>
             <VBox layoutX="22.0" layoutY="48.0" prefHeight="266.0" prefWidth="123.0" spacing="10.0">
