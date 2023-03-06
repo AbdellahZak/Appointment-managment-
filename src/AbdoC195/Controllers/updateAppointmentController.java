@@ -1,6 +1,9 @@
 package AbdoC195.Controllers;
 
+import AbdoC195.DB.DbHelper;
 import AbdoC195.Model.Appointment;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -14,6 +17,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 public class updateAppointmentController implements Initializable {
@@ -34,8 +38,10 @@ public class updateAppointmentController implements Initializable {
     public ComboBox updateAppViewEndMinutePickerCombo;
     public ComboBox updateAppViewCustomerIdComboStat;
     public ComboBox updateAppViewUserIdComboStat;
-
+    ObservableList<String> hours = FXCollections.observableArrayList(); // from the code repository.
+    ObservableList<String> minutes = FXCollections.observableArrayList();
     public void passAppointment(Appointment appointment){
+
         updateAppViewAppIdTxt.setText(Integer.toString(appointment.getAppointmentId()));
         updateAppViewTitleTxt.setText(appointment.getTitle());
         updateAppViewDescriptionTxt.setText(appointment.getDescription());
@@ -57,6 +63,28 @@ public class updateAppointmentController implements Initializable {
     }
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        DbHelper.allUsers.clear();
+        DbHelper.allContacts.clear();
+        try {
+            DbHelper.getContactsDb();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        updateAppViewContactComboStat.setItems(DbHelper.allContacts);
+        updateAppViewCustomerIdComboStat.setItems(DbHelper.allCustomers);
+        try {
+            DbHelper.getUsersDb();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        updateAppViewUserIdComboStat.setItems(DbHelper.allUsers);
+        hours.addAll("00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11",
+                "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23");
+        minutes.addAll("00", "15", "30", "45");
+        updateAppViewStartHourPickerCombo.setItems(hours);
+        updateAppViewStartMinutePickerCombo.setItems(minutes);
+        updateAppViewEndHourPickerCombo.setItems(hours);
+        updateAppViewEndMinutePickerCombo.setItems(minutes);
 
     }
 
