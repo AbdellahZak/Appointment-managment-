@@ -74,7 +74,11 @@ public class DirectoryController implements Initializable {
 
 
 
-    public void directoryViewAppAddButton(ActionEvent actionEvent) {
+    public void directoryViewAppAddButton(ActionEvent actionEvent) throws IOException {
+        stage =(Stage)((Button)actionEvent.getSource()).getScene().getWindow();
+        scene = FXMLLoader.load(getClass().getResource("/AbdoC195/Views/addAppointment.fxml"));
+        stage.setScene(new Scene(scene));
+        stage.show();
     }
 
     public void directoryViewAppDeleteButton(ActionEvent actionEvent) {

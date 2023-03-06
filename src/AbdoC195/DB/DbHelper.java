@@ -1,9 +1,6 @@
 package AbdoC195.DB;
 
-import AbdoC195.Model.Appointment;
-import AbdoC195.Model.Countries;
-import AbdoC195.Model.Customer;
-import AbdoC195.Model.Divison;
+import AbdoC195.Model.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
@@ -240,8 +237,30 @@ inner join contacts ON appointments.Contact_ID = contacts.Contact_ID*/
         ps.setInt(5,customer.getFirst_levelD());
         ps.executeUpdate();
     } */
+    /////////////////////////////////////////////////////Contact//////////////////////////////////////////////////////////////
+    public static ObservableList<Contact> allContacts= FXCollections.observableArrayList();
 
+    public static ObservableList<Contact> getContacts(){
+        return allContacts;
+    }
 
+    public static void addContact(Contact contact){
+        allContacts.add(contact);
+    }
+
+    public static ObservableList<Contact> getContactsDb() throws SQLException {
+        String sql="SELECT Contact_ID, Contact_Name, Email FROM contacts";
+        PreparedStatement ps=JDBC.connection.prepareStatement(sql);
+        ResultSet rs=ps.executeQuery();
+        Contact contact = null;
+        while (rs.next()){
+            int contact_Id= rs.getInt("Contact_ID");
+            String contactName= rs.getString("Contact_Name");
+            String email= rs.getString("Email");
+            addContact(new Contact(contact_Id, contactName,email));
+        }
+        return getContacts();
+    }
 
     ////////////////////////////////////////////////////Time conversions////////////////////////////////////////////////////////
 
