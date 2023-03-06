@@ -17,6 +17,8 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ResourceBundle;
 
 public class addAppointmentController implements Initializable {
@@ -52,6 +54,14 @@ public class addAppointmentController implements Initializable {
     }
 
     public void addAppViewAddBtn(ActionEvent actionEvent) throws IOException {
+        LocalDate startDate = addAppViewStartDatePicker.getValue();
+        LocalDate endDate = addAppViewEndDatePicker.getValue();
+        String startHour = addAppViewStartHourPickerCombo.getValue().toString();
+        String startMinute = addAppViewStartMinutePickerCombo.getValue().toString();
+        String endHour = addAppViewEndHourPickerCombo.getValue().toString();
+        String endMinute = addAppViewEndMinutePickerCombo.getValue().toString();
+        LocalDateTime ldtStart = LocalDateTime.of(startDate.getYear(), startDate.getMonthValue(), startDate.getDayOfMonth(), Integer.parseInt(startHour), Integer.parseInt(startMinute));
+        LocalDateTime ldtEnd = LocalDateTime.of(endDate.getYear(), endDate.getMonthValue(), endDate.getDayOfMonth(), Integer.parseInt(endHour), Integer.parseInt(endMinute));
         stage =(Stage)((Button)actionEvent.getSource()).getScene().getWindow();
         scene = FXMLLoader.load(getClass().getResource("/AbdoC195/Views/directoryView.fxml"));
         stage.setScene(new Scene(scene));
