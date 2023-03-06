@@ -65,5 +65,8 @@ public class Customer {
     public void setFirst_levelD(int first_levelD) {
         this.first_levelD = first_levelD;
     }
-
+    @Override
+    public String toString(){
+        return ("#" +Integer.toString(customer_Id) +" "+ customer_Name );
+    }
 }

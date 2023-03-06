@@ -4,20 +4,37 @@ import AbdoC195.Model.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Timestamp;
+import java.sql.*;
 import java.time.LocalDateTime;
-import java.time.ZoneId;
-import java.time.ZonedDateTime;
 
 public abstract class DbHelper {
     public static int nextCustomerId = 3;
 
-    //////////////////////////////////////////////Users///////////////////////////////////////////////
+    //////////////////////////////////////////////User///////////////////////////////////////////////
 
+    public static ObservableList<User> allUsers= FXCollections.observableArrayList();
 
+    public static ObservableList<User> getUsers(){
+        return allUsers;
+    }
+
+    public static void addUser(User user){
+        allUsers.add(user);
+    }
+
+    public static ObservableList<User> getUsersDb() throws SQLException {
+        String sql="SELECT User_ID, User_Name,Password FROM users";
+        PreparedStatement ps=JDBC.connection.prepareStatement(sql);
+        ResultSet rs=ps.executeQuery();
+        User user = null;
+        while (rs.next()){
+            int userId= rs.getInt("User_ID");
+            String userName= rs.getString("User_Name");
+            String password= rs.getString("Password");
+            addUser(new User(userId, userName,password));
+        }
+        return getUsers();
+    }
 
 
     public static int insert(String userID, String userPassword) throws SQLException {
@@ -183,20 +200,21 @@ public abstract class DbHelper {
         allAppointments.add(appointment);
     }
 
-   /* public static void addAppointment(Appointment appointment) throws SQLException {
+   public static void addAppointment(Appointment appointment) throws SQLException {
         String sql = "INSERT INTO CUSTOMERS (Customer_Name,Address,Postal_Code,Phone,Division_ID) VALUES (?,?,?,?,?)";
         PreparedStatement ps= JDBC.connection.prepareStatement(sql);
         // ps.setInt(1,customer.getCustomer_Id());
-        ps.setString(1,appointment.getCustomer_Name());
-        ps.setString(2,appointment.getAddress());
-        ps.setString(3,appointment.getPostalCode());
-        ps.setString(4,appointment.getPhoneNumber());
+        ps.setString(1,appointment.getTitle());
+        ps.setString(2,appointment.getDescription());
+        ps.setString(3,appointment.getLocation());
+        ps.setString(4,appointment.getContact());
+        ps.setString(5,appointment.getType());
+        ps.setString(4,appointment.getContact());
+        Timestamp startTimeDate= appointment.getStartDateTime().
         ps.setInt(5,appointment.getFirst_levelD());
         ps.executeUpdate();
-    }*/
-/* SELECT Appointment_ID, Title, Description, Location,contacts.Contact_Name, Type, Start, End,Customer_ID,User_ID
-FROM appointments
-inner join contacts ON appointments.Contact_ID = contacts.Contact_ID*/
+    }
+
     public static void getAppointmentDb() throws SQLException {
         String sql="SELECT Appointment_ID, Title, Description, Location,contacts.Contact_Name, Type, Start, End,Customer_ID,User_ID\n" +
                 "FROM appointments\n" +
@@ -263,12 +281,13 @@ inner join contacts ON appointments.Contact_ID = contacts.Contact_ID*/
     }
 
     ////////////////////////////////////////////////////Time conversions////////////////////////////////////////////////////////
-
+    //timestamp to localdatetime
     public static LocalDateTime UtcToLocalZoned(Timestamp dateTimeDb){
         LocalDateTime local=dateTimeDb.toLocalDateTime();
         return local;
     }
-
+    //localdatetime to timestamp
+    public static Timestamp LocalToTimestamp(LocalDateTime localDateTime){}
 
     ////////////////////////////////////////////////// ComboBox hour minute ///////////////////////////////////////////////////////////////
 

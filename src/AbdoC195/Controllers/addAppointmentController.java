@@ -1,7 +1,10 @@
 package AbdoC195.Controllers;
 
 import AbdoC195.DB.DbHelper;
+import AbdoC195.Model.Appointment;
 import AbdoC195.Model.Contact;
+import AbdoC195.Model.Customer;
+import AbdoC195.Model.User;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -42,8 +45,8 @@ public class addAppointmentController implements Initializable {
     public ComboBox addAppViewStartMinutePickerCombo;
     public ComboBox addAppViewEndHourPickerCombo;
     public ComboBox addAppViewEndMinutePickerCombo;
-    public ComboBox addAppViewCustomerIdComboStat;
-    public ComboBox addAppViewUserIdComboStat;
+    public ComboBox<Customer> addAppViewCustomerIdComboStat;
+    public ComboBox<User> addAppViewUserIdComboStat;
     ObservableList<String> hours = FXCollections.observableArrayList(); // from the code repository.
     ObservableList<String> minutes = FXCollections.observableArrayList();
 
@@ -57,7 +60,8 @@ public class addAppointmentController implements Initializable {
     public void addAppViewContactComboStat(ActionEvent actionEvent) {
     }
 
-    public void addAppViewAddBtn(ActionEvent actionEvent) throws IOException {
+    public void addAppViewAddBtn(ActionEvent actionEvent) throws IOException, SQLException {
+        int appointmentId=0;
         String title=addAppViewTitleTxt.getText();
         String description=addAppViewDescriptionTxt.getText();
         String location =addAppViewLocationTxt.getText();
@@ -72,6 +76,11 @@ public class addAppointmentController implements Initializable {
         String endMinute = addAppViewEndMinutePickerCombo.getValue().toString();
         LocalDateTime ldtStart = LocalDateTime.of(startDate.getYear(), startDate.getMonthValue(), startDate.getDayOfMonth(), Integer.parseInt(startHour), Integer.parseInt(startMinute));
         LocalDateTime ldtEnd = LocalDateTime.of(endDate.getYear(), endDate.getMonthValue(), endDate.getDayOfMonth(), Integer.parseInt(endHour), Integer.parseInt(endMinute));
+        Customer customerObject=addAppViewCustomerIdComboStat.getSelectionModel().getSelectedItem();
+        int customerId=customerObject.getCustomer_Id();
+        User userObject=addAppViewUserIdComboStat.getSelectionModel().getSelectedItem();
+        int userId=userObject.getUser_ID();
+        DbHelper.addAppointment(new Appointment(appointmentId,title,description,location,contact,type,ldtStart,ldtEnd,customerId,userId));
         stage =(Stage)((Button)actionEvent.getSource()).getScene().getWindow();
         scene = FXMLLoader.load(getClass().getResource("/AbdoC195/Views/directoryView.fxml"));
         stage.setScene(new Scene(scene));
@@ -89,6 +98,12 @@ public class addAppointmentController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         try {
             addAppViewContactComboStat.setItems(DbHelper.getContactsDb());
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        addAppViewCustomerIdComboStat.setItems(DbHelper.allCustomers);
+        try {
+            addAppViewUserIdComboStat.setItems(DbHelper.getUsersDb());
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }

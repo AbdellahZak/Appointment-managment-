@@ -6,7 +6,7 @@ import javafx.collections.ObservableList;
 import java.sql.Timestamp;
 import java.util.Date;
 /** User Model class. */
-public class Users {
+public class User {
     private int User_ID;
     private String User_Name;
     private String Password;
@@ -72,7 +72,7 @@ public class Users {
 
     private String Last_Updated_By;
 
-    public Users(int user_ID, String user_Name, String password, Timestamp create_Date, String created_By, Timestamp last_Update, String last_Updated_By) {
+    public User(int user_ID, String user_Name, String password, Timestamp create_Date, String created_By, Timestamp last_Update, String last_Updated_By) {
         User_ID = user_ID;
         User_Name = user_Name;
         Password = password;
@@ -80,6 +80,15 @@ public class Users {
         Created_By = created_By;
         Last_Update = last_Update;
         Last_Updated_By = last_Updated_By;
+    }
+    public User(int user_ID, String user_Name, String password){
+        User_ID = user_ID;
+        User_Name = user_Name;
+        Password = password;
+    }
+    @Override
+    public String toString(){
+        return ("#" +Integer.toString(User_ID) +" "+ User_Name );
     }
 }
 
