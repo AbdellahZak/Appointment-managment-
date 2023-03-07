@@ -116,6 +116,14 @@ public class DirectoryController implements Initializable {
         stage.setScene(scene);
         stage.show();
     }
+    public void directoryViewAppAllRadioBtn(ActionEvent actionEvent) {
+    }
+    public void directoryViewAppWeekRadioBtn(ActionEvent actionEvent) {
+    }
+    public void directoryViewAppAMonthRadioBtn(ActionEvent actionEvent) {
+    }
+
+
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -154,4 +162,7 @@ public class DirectoryController implements Initializable {
 
 
     }
+
+
+
 }
