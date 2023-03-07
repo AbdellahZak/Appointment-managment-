@@ -62,12 +62,11 @@ public class DirectoryController implements Initializable {
                 alert.setTitle("Customer deletion unssucceful");
                 alert.setContentText("Customer has pending appointments");
                 alert.showAndWait();
+                return;
                 }
-            else{
-                DbHelper.allCustomers.remove(customer);
-                DbHelper.deleteCustomerByIdDb(customer.getCustomer_Id()); }
             }
-
+        DbHelper.allCustomers.remove(customer);
+        DbHelper.deleteCustomerByIdDb(customer.getCustomer_Id());
         }
 
     public void directoryViewCustomerUpdateButton(ActionEvent actionEvent) throws IOException {
