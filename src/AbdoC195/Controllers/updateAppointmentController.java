@@ -2,6 +2,9 @@ package AbdoC195.Controllers;
 
 import AbdoC195.DB.DbHelper;
 import AbdoC195.Model.Appointment;
+import AbdoC195.Model.Contact;
+import AbdoC195.Model.Customer;
+import AbdoC195.Model.User;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -19,6 +22,8 @@ import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.ResourceBundle;
 
 public class updateAppointmentController implements Initializable {
@@ -29,7 +34,7 @@ public class updateAppointmentController implements Initializable {
     public TextField updateAppViewTitleTxt;
     public TextField updateAppViewDescriptionTxt;
     public TextField updateAppViewLocationTxt;
-    public ComboBox updateAppViewContactComboStat;
+    public ComboBox<Contact> updateAppViewContactComboStat;
     public TextField updateAppViewTypeTxt;
     public DatePicker updateAppViewStartDatePicker;
     public DatePicker updateAppViewEndDatePicker;
@@ -37,8 +42,8 @@ public class updateAppointmentController implements Initializable {
     public ComboBox updateAppViewStartMinutePickerCombo;
     public ComboBox updateAppViewEndHourPickerCombo;
     public ComboBox updateAppViewEndMinutePickerCombo;
-    public ComboBox updateAppViewCustomerIdComboStat;
-    public ComboBox updateAppViewUserIdComboStat;
+    public ComboBox<Customer> updateAppViewCustomerIdComboStat;
+    public ComboBox<User> updateAppViewUserIdComboStat;
     ObservableList<String> hours = FXCollections.observableArrayList(); // from the code repository.
     ObservableList<String> minutes = FXCollections.observableArrayList();
     public void passAppointment(Appointment appointment){
@@ -66,7 +71,25 @@ public class updateAppointmentController implements Initializable {
 
     }
 
-    public void updateAppViewUpdateBtn(ActionEvent actionEvent) throws IOException {
+    public void updateAppViewUpdateBtn(ActionEvent actionEvent) throws IOException, SQLException {
+        int appointmentId= Integer.parseInt(updateAppViewAppIdTxt.getText());
+        String title=updateAppViewTitleTxt.getText();
+        String desription=updateAppViewDescriptionTxt.getText();
+        String location= updateAppViewLocationTxt.getText();
+        Contact contactobject=updateAppViewContactComboStat.getSelectionModel().getSelectedItem();
+        int contactId=contactobject.getContactId();
+        String type= updateAppViewTypeTxt.getText();
+        LocalDate startDate =updateAppViewStartDatePicker.getValue();
+        LocalTime startTime= LocalTime.of(Integer.parseInt(updateAppViewStartHourPickerCombo.getValue().toString()),Integer.parseInt(updateAppViewStartMinutePickerCombo.getValue().toString()));
+        LocalDateTime start=LocalDateTime.of(startDate,startTime);
+        LocalDate endDate =updateAppViewStartDatePicker.getValue();
+        LocalTime endTime= LocalTime.of(Integer.parseInt(updateAppViewEndHourPickerCombo.getValue().toString()),Integer.parseInt(updateAppViewEndMinutePickerCombo.getValue().toString()));
+        LocalDateTime end=LocalDateTime.of(endDate,endTime);
+        Customer customer=updateAppViewCustomerIdComboStat.getSelectionModel().getSelectedItem();
+        int customerId=customer.getCustomer_Id();
+        User user=updateAppViewUserIdComboStat.getSelectionModel().getSelectedItem();
+        int userId=user.getUser_ID();
+        DbHelper.updateAppointmentRowById(new Appointment(appointmentId,title,desription,location,contactId,type,start,end,customerId,userId));
         stage =(Stage)((Button)actionEvent.getSource()).getScene().getWindow();
         scene = FXMLLoader.load(getClass().getResource("/AbdoC195/Views/directoryView.fxml"));
         stage.setScene(new Scene(scene));
@@ -74,7 +97,10 @@ public class updateAppointmentController implements Initializable {
     }
 
     public void updateAppViewCancelBtn(ActionEvent actionEvent) throws IOException {
-
+        stage =(Stage)((Button)actionEvent.getSource()).getScene().getWindow();
+        scene = FXMLLoader.load(getClass().getResource("/AbdoC195/Views/directoryView.fxml"));
+        stage.setScene(new Scene(scene));
+        stage.show();
     }
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {

@@ -247,18 +247,21 @@ public abstract class DbHelper {
         ps.setInt(1,customerId);
         ps.executeUpdate();
     }
-    /*
-  public static void updateAppointmentRowById(Customer customer) throws SQLException {
-      String sql = "UPDATE CUSTOMERS SET Customer_Name=?,Address=?,Postal_Code=?,Phone=?,Division_ID=? WHERE Customer_ID=?";
+  public static void updateAppointmentRowById(Appointment appointment) throws SQLException {
+      String sql = "UPDATE appointments SET Title=?,Description=?,Location=?,Type=?,Start=?, End=?,Contact_ID=?,Customer_ID=?,User_ID=? WHERE Appointment_ID=?";
       PreparedStatement ps= JDBC.connection.prepareStatement(sql);
-      ps.setInt(6,customer.getCustomer_Id());
-      ps.setString(1,customer.getCustomer_Name());
-      ps.setString(2,customer.getAddress());
-      ps.setString(3,customer.getPostalCode());
-      ps.setString(4,customer.getPhoneNumber());
-      ps.setInt(5,customer.getFirst_levelD());
+      ps.setInt(10,appointment.getAppointmentId());
+      ps.setString(1,appointment.getTitle());
+      ps.setString(2,appointment.getDescription());
+      ps.setString(3,appointment.getLocation());
+      ps.setString(4,appointment.getType());
+      ps.setTimestamp(5, Timestamp.valueOf(appointment.getStartDateTime()));
+      ps.setTimestamp(6,Timestamp.valueOf(appointment.getEndDateTime()));
+      ps.setInt(7,appointment.getContactId());
+      ps.setInt(8, appointment.getCustomerId());
+      ps.setInt(9,appointment.getUserId());
       ps.executeUpdate();
-  } */
+  }
     /////////////////////////////////////////////////////Contact//////////////////////////////////////////////////////////////
     public static ObservableList<Contact> allContacts= FXCollections.observableArrayList();
 
