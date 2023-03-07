@@ -95,10 +95,14 @@ public class DirectoryController implements Initializable {
         Appointment appointment= directoryViewAppTable.getSelectionModel().getSelectedItem();
         Alert alert =new Alert(Alert.AlertType.ERROR);
         alert.setTitle("Cancel Appointment");
-        alert.setContentText("Cancelling Appointment ID: "+appointment.getAppointmentId()+" Type: "+appointment.getType());
+        alert.setContentText("You will cancelling the selected appointment, are you sure?");
         alert.showAndWait();
         DbHelper.allAppointments.remove(appointment);
         DbHelper.deleteAppointmentByIdDb(appointment.getAppointmentId());
+        alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("Appointment Cancele ");
+        alert.setContentText("Cancelling Appointment ID: "+appointment.getAppointmentId()+" Type: "+appointment.getType());
+        alert.showAndWait();
     }
 
     public void directoryViewAppUpdateButton(ActionEvent actionEvent) throws IOException {

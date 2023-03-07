@@ -9,7 +9,7 @@
 
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="AbdoC195.Controllers.DirectoryController">
    <children>
-      <AnchorPane prefHeight="442.0" prefWidth="698.0">
+      <AnchorPane layoutY="-10.0" prefHeight="462.0" prefWidth="861.0">
          <children>
             <TableView fx:id="directoryViewCustomerTable" layoutX="14.0" layoutY="44.0" prefHeight="122.0" prefWidth="678.0">
               <columns>
@@ -26,31 +26,31 @@
                   <Font size="21.0" />
                </font>
             </Label>
-            <Button layoutX="73.0" layoutY="171.0" mnemonicParsing="false" onAction="#directoryViewCustomerAddButton" text="ADD" />
-            <Button layoutX="149.0" layoutY="171.0" mnemonicParsing="false" onAction="#directoryViewCustomerDeleteButton" text="DELETE" />
-            <Button layoutX="221.0" layoutY="171.0" mnemonicParsing="false" onAction="#directoryViewCustomerUpdateButton" text="UPDATE" />
+            <Button layoutX="246.0" layoutY="171.0" mnemonicParsing="false" onAction="#directoryViewCustomerAddButton" text="ADD" />
+            <Button layoutX="322.0" layoutY="171.0" mnemonicParsing="false" onAction="#directoryViewCustomerDeleteButton" text="DELETE" />
+            <Button layoutX="394.0" layoutY="171.0" mnemonicParsing="false" onAction="#directoryViewCustomerUpdateButton" text="UPDATE" />
             <Label layoutX="23.0" layoutY="200.0" text="Appointments">
                <font>
                   <Font size="21.0" />
                </font>
             </Label>
-            <TableView fx:id="directoryViewAppTable" layoutX="15.0" layoutY="242.0" prefHeight="122.0" prefWidth="678.0">
+            <TableView fx:id="directoryViewAppTable" layoutX="15.0" layoutY="242.0" prefHeight="166.0" prefWidth="837.0">
                <columns>
-                  <TableColumn fx:id="directoryViewAppointmentIdClmn" prefWidth="42.0" text="Appointment ID" />
-                  <TableColumn fx:id="directoryViewAppTitleClmn" prefWidth="34.0" text="Title" />
-                  <TableColumn fx:id="directoryViewAppDesciptionClmn" prefWidth="34.0" text="Description" />
-                  <TableColumn fx:id="directoryViewAppLocationClmn" prefWidth="77.0" text="Location" />
-                  <TableColumn fx:id="directoryViewAppContactClmn" prefWidth="54.0" text="Contact" />
-                  <TableColumn fx:id="directoryViewAppTypeClmn" prefWidth="82.0" text="Type" />
-                  <TableColumn fx:id="directoryViewAppStartDateClmn" prefWidth="137.0" text="Start date and time" />
-                  <TableColumn fx:id="directoryViewAppEndDateClmn" prefWidth="126.0" text="End date and time" />
-                  <TableColumn fx:id="directoryViewAppCustomerIdClmn" prefWidth="64.0" text="Customer ID" />
-                  <TableColumn fx:id="directoryViewAppUserIdClmn" prefWidth="58.0" text="User ID" />
+                  <TableColumn fx:id="directoryViewAppointmentIdClmn" prefWidth="54.0" text="Appointment ID" />
+                  <TableColumn fx:id="directoryViewAppTitleClmn" prefWidth="37.0" text="Title" />
+                  <TableColumn fx:id="directoryViewAppDesciptionClmn" prefWidth="78.0" text="Description" />
+                  <TableColumn fx:id="directoryViewAppLocationClmn" prefWidth="88.0" text="Location" />
+                  <TableColumn fx:id="directoryViewAppContactClmn" prefWidth="122.0" text="Contact" />
+                  <TableColumn fx:id="directoryViewAppTypeClmn" prefWidth="63.0" text="Type" />
+                  <TableColumn fx:id="directoryViewAppStartDateClmn" prefWidth="125.0" text="Start date and time" />
+                  <TableColumn fx:id="directoryViewAppEndDateClmn" prefWidth="135.0" text="End date and time" />
+                  <TableColumn fx:id="directoryViewAppCustomerIdClmn" prefWidth="83.0" text="Customer ID" />
+                  <TableColumn fx:id="directoryViewAppUserIdClmn" prefWidth="51.0" text="User ID" />
                </columns>
             </TableView>
-            <Button layoutX="73.0" layoutY="374.0" mnemonicParsing="false" onAction="#directoryViewAppAddButton" text="ADD" />
-            <Button layoutX="149.0" layoutY="374.0" mnemonicParsing="false" onAction="#directoryViewAppDeleteButton" text="DELETE" />
-            <Button layoutX="221.0" layoutY="374.0" mnemonicParsing="false" onAction="#directoryViewAppUpdateButton" text="UPDATE" />
+            <Button layoutX="243.0" layoutY="421.0" mnemonicParsing="false" onAction="#directoryViewAppAddButton" text="ADD" />
+            <Button layoutX="319.0" layoutY="421.0" mnemonicParsing="false" onAction="#directoryViewAppDeleteButton" text="DELETE" />
+            <Button layoutX="391.0" layoutY="421.0" mnemonicParsing="false" onAction="#directoryViewAppUpdateButton" text="UPDATE" />
          </children>
       </AnchorPane>
    </children>
