@@ -93,6 +93,10 @@ public class DirectoryController implements Initializable {
 
     public void directoryViewAppDeleteButton(ActionEvent actionEvent) throws SQLException {
         Appointment appointment= directoryViewAppTable.getSelectionModel().getSelectedItem();
+        Alert alert =new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("Cancelling Appointment ID# "+appointment.getAppointmentId()+"Type:"+appointment.getType());
+        alert.setContentText("Customer has pending appointments");
+        alert.showAndWait();
         DbHelper.allAppointments.remove(appointment);
         DbHelper.deleteAppointmentByIdDb(appointment.getAppointmentId());
     }
