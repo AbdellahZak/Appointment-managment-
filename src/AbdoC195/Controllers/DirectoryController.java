@@ -10,6 +10,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -55,10 +56,19 @@ public class DirectoryController implements Initializable {
 
     public void directoryViewCustomerDeleteButton(ActionEvent actionEvent) throws SQLException {
         Customer customer= directoryViewCustomerTable.getSelectionModel().getSelectedItem();
-        DbHelper.allCustomers.remove(customer);
-        DbHelper.deleteCustomerByIdDb(customer.getCustomer_Id());
+        for(Appointment appointment: DbHelper.allAppointments){
+            if(appointment.getCustomerId()==customer.getCustomer_Id()){
+                Alert alert =new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Customer deletion unssucceful");
+                alert.setContentText("Customer has pending appointments");
+                alert.showAndWait();
+                }
+            else{
+                DbHelper.allCustomers.remove(customer);
+                DbHelper.deleteCustomerByIdDb(customer.getCustomer_Id()); }
+            }
 
-    }
+        }
 
     public void directoryViewCustomerUpdateButton(ActionEvent actionEvent) throws IOException {
         FXMLLoader loader= new FXMLLoader();    //passing selecxted object when modify button is clicked to mod part view
