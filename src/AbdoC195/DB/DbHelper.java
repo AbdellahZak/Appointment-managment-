@@ -324,16 +324,16 @@ public abstract class DbHelper {
         LocalDateTime b=appointment.getEndDateTime();
         ObservableList<Appointment> appsFilteredByID= FXCollections.observableArrayList();
         for(Appointment appointment1: allAppointments){
-            if(appointment1.getCustomerId()==appointment.getCustomerId()){
+            if((appointment1.getCustomerId()==appointment.getCustomerId())&&(appointment.getAppointmentId()!=(appointment.getAppointmentId()))){
                 appsFilteredByID.add(appointment1);
                 LocalDateTime c=appointment1.getStartDateTime();
                 LocalDateTime d=appointment1.getEndDateTime();
                 if((a.isAfter(c)||a.isEqual(c))&&(a.isBefore(d))){ return false;}
-                if(b.isAfter(c)&&(b.isBefore(c)||b.isEqual(d))){return false;}
+                if(b.isAfter(c)&&(b.isBefore(c)||b.isEqual(c))){return false;}
                 if((a.isBefore(c)||a.isEqual(c))&&((b.isAfter(d))||(b.isEqual(d)))){return false;}
             }
         }
-        return true;
+
     }
 
 

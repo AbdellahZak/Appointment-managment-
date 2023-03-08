@@ -86,6 +86,7 @@ public class updateAppointmentController implements Initializable {
         int customerId=customer.getCustomer_Id();
         User user=updateAppViewUserIdComboStat.getSelectionModel().getSelectedItem();
         int userId=user.getUser_ID();
+        Appointment appointment= new Appointment(appointmentId,title,desription,location,contactId,type,start,end,customerId,userId);
         if(DbHelper.isWithinBusinessHours(start)==false){
             Alert alert =new Alert(Alert.AlertType.ERROR);
             alert.setTitle(" Appointment time error ");
@@ -100,7 +101,14 @@ public class updateAppointmentController implements Initializable {
             alert.showAndWait();
             return;
         }
-        DbHelper.updateAppointmentRowById(new Appointment(appointmentId,title,desription,location,contactId,type,start,end,customerId,userId));
+        if(DbHelper.LookForOverlap(appointment)==false){
+            Alert alert =new Alert(Alert.AlertType.ERROR);
+            alert.setTitle(" Overlap ");
+            alert.setContentText(" The start and End dates and times chosen contain an overlap with \n previous appointments for this customer. ");
+            alert.showAndWait();
+            return;
+        }
+        DbHelper.updateAppointmentRowById(appointment);
         stage =(Stage)((Button)actionEvent.getSource()).getScene().getWindow();
         scene = FXMLLoader.load(getClass().getResource("/AbdoC195/Views/directoryView.fxml"));
         stage.setScene(new Scene(scene));
