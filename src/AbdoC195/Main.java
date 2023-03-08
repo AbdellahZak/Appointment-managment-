@@ -24,8 +24,6 @@ public class Main extends Application {
 
 
     public static void main(String[] args) throws SQLException {
-        LocalDateTime now=LocalDateTime.now();
-        Boolean result=DbHelper.isWithinBusinessHours(now);
         JDBC.makeConnection();
         launch(args);
         JDBC.closeConnection();

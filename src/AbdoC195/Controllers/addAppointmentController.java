@@ -12,10 +12,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -80,7 +77,22 @@ public class addAppointmentController implements Initializable {
         int customerId=customerObject.getCustomer_Id();
         User userObject=addAppViewUserIdComboStat.getSelectionModel().getSelectedItem();
         int userId=userObject.getUser_ID();
+        if(DbHelper.isWithinBusinessHours(ldtStart)==false){
+            Alert alert =new Alert(Alert.AlertType.ERROR);
+            alert.setTitle(" Appointment time error ");
+            alert.setContentText(" the appointment time chosen is not within range (8AM-10PM) EST ");
+            alert.showAndWait();
+            return;
+        }
+        if(DbHelper.isWithinBusinessHours(ldtEnd)==false){
+            Alert alert =new Alert(Alert.AlertType.ERROR);
+            alert.setTitle(" Appointment time error ");
+            alert.setContentText(" the appointment time chosen is not within range (8AM-10PM) EST ");
+            alert.showAndWait();
+            return;
+        }
         DbHelper.addAppointment(new Appointment(appointmentId,title,description,location,contactId,type,ldtStart,ldtEnd,customerId,userId));
+
         stage =(Stage)((Button)actionEvent.getSource()).getScene().getWindow();
         scene = FXMLLoader.load(getClass().getResource("/AbdoC195/Views/directoryView.fxml"));
         stage.setScene(new Scene(scene));
