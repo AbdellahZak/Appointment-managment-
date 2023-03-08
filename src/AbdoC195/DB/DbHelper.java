@@ -299,14 +299,23 @@ public abstract class DbHelper {
         return time;
     }
     public static Boolean isWithinBusinessHours(LocalDateTime localDateTime){
+        Boolean result=false;
         LocalDate localeDate=localDateTime.toLocalDate();
         LocalTime localTime8Am=LocalTime.of(8,0);
         LocalTime localTime10Pm=LocalTime.of(22,0);
-        LocalDateTime startDateTimeBh=LocalDateTime.of(localeDate,localTime8Am);
-        LocalDateTime endDateTimeBh=LocalDateTime.of(localeDate,localTime10Pm);
-        ZonedDateTime zonedStartTime=ZonedDateTime.of(startDateTimeBh, ZoneId.of("EST"));
-        ZonedDateTime zonedEndTime=ZonedDateTime.of(endDateTimeBh, ZoneId.of("EST"));
-
+        ZoneId zoneIdEst=ZoneId.of("America/New_York");
+        LocalDateTime localstart=LocalDateTime.of(localeDate,localTime8Am);  //local date time for start and end of business hours
+        LocalDateTime localend=LocalDateTime.of(localeDate,localTime10Pm);
+        ZonedDateTime zonedEstStartTime=localstart.atZone(zoneIdEst);
+        ZonedDateTime zonedEstEndTime=localend.atZone(zoneIdEst);
+        ZonedDateTime zonedUserStartTime=zonedEstStartTime.withZoneSameInstant(ZoneId.systemDefault());
+        ZonedDateTime zonedUserEndTime=zonedEstEndTime.withZoneSameInstant(ZoneId.systemDefault());
+        LocalDateTime start=zonedUserStartTime.toLocalDateTime();
+        LocalDateTime end=zonedUserEndTime.toLocalDateTime();
+        if(localDateTime.isAfter(start)&&(localDateTime.isBefore(end))){
+            result= true;
+        }else{result= false;}
+        return result;
     }
 
     ////////////////////////////////////////////////// ComboBox hour minute ///////////////////////////////////////////////////////////////
