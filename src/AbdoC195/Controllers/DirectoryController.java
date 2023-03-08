@@ -4,6 +4,8 @@ import AbdoC195.DB.DbHelper;
 import AbdoC195.Model.Appointment;
 import AbdoC195.Model.Countries;
 import AbdoC195.Model.Customer;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -21,6 +23,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.time.LocalDateTime;
+import java.time.temporal.ChronoUnit;
 import java.util.ResourceBundle;
 
 public class DirectoryController implements Initializable {
@@ -118,13 +121,32 @@ public class DirectoryController implements Initializable {
         stage.show();
     }
     public void directoryViewAppAllRadioBtn(ActionEvent actionEvent) {
+        directoryViewAppTable.setItems(DbHelper.allAppointments);
 
     }
     public void directoryViewAppWeekRadioBtn(ActionEvent actionEvent) {
+        ObservableList<Appointment> appointmentsWithinWeek= FXCollections.observableArrayList();
         LocalDateTime localNow=LocalDateTime.now();
-
+        LocalDateTime plusHalfWeek=localNow.plus(84, ChronoUnit.HOURS);
+        LocalDateTime minusHalfWeek=localNow.minus(84,ChronoUnit.HOURS);
+        for(Appointment appointment: DbHelper.allAppointments){
+            if(appointment.getStartDateTime().isAfter(minusHalfWeek)&& appointment.getStartDateTime().isBefore(plusHalfWeek)){
+                appointmentsWithinWeek.add(appointment);
+            }
+        }
+    directoryViewAppTable.setItems(appointmentsWithinWeek);
     }
     public void directoryViewAppAMonthRadioBtn(ActionEvent actionEvent) {
+        ObservableList<Appointment> appointmentsWithinMonth= FXCollections.observableArrayList();
+        LocalDateTime localNow=LocalDateTime.now();
+        LocalDateTime plusHalfMonth=localNow.plus(365, ChronoUnit.HOURS);
+        LocalDateTime minusHalfMonth=localNow.minus(365,ChronoUnit.HOURS);
+        for(Appointment appointment: DbHelper.allAppointments){
+            if(appointment.getStartDateTime().isAfter(minusHalfMonth)&& appointment.getStartDateTime().isBefore(plusHalfMonth)){
+                appointmentsWithinMonth.add(appointment);
+            }
+        }
+        directoryViewAppTable.setItems(appointmentsWithinMonth);
     }
 
 

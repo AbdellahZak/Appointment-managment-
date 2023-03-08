@@ -5,7 +5,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 import java.sql.*;
-import java.time.LocalDateTime;
+import java.time.*;
 
 public abstract class DbHelper {
     public static int nextCustomerId = 3;
@@ -297,6 +297,16 @@ public abstract class DbHelper {
     public static Timestamp LocalToTimestamp(LocalDateTime localDateTime){
         Timestamp time=Timestamp.valueOf(localDateTime);
         return time;
+    }
+    public static Boolean isWithinBusinessHours(LocalDateTime localDateTime){
+        LocalDate localeDate=localDateTime.toLocalDate();
+        LocalTime localTime8Am=LocalTime.of(8,0);
+        LocalTime localTime10Pm=LocalTime.of(22,0);
+        LocalDateTime startDateTimeBh=LocalDateTime.of(localeDate,localTime8Am);
+        LocalDateTime endDateTimeBh=LocalDateTime.of(localeDate,localTime10Pm);
+        ZonedDateTime zonedStartTime=ZonedDateTime.of(startDateTimeBh, ZoneId.of("EST"));
+        ZonedDateTime zonedEndTime=ZonedDateTime.of(endDateTimeBh, ZoneId.of("EST"));
+
     }
 
     ////////////////////////////////////////////////// ComboBox hour minute ///////////////////////////////////////////////////////////////
