@@ -104,7 +104,7 @@ public class updateAppointmentController implements Initializable {
         if(DbHelper.LookForOverlap(appointment)==false){
             Alert alert =new Alert(Alert.AlertType.ERROR);
             alert.setTitle(" Overlap ");
-            alert.setContentText(" The start and End dates and times chosen contain an overlap with \n previous appointments for this customer. ");
+            alert.setContentText(" The start and End dates and times chosen contain an overlap with previous appointments for this customer. ");
             alert.showAndWait();
             return;
         }

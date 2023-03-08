@@ -330,7 +330,7 @@ public abstract class DbHelper {
                 LocalDateTime c=appointment1.getStartDateTime();
                 LocalDateTime d=appointment1.getEndDateTime();
                 if((a.isAfter(c)||a.isEqual(c))&&(a.isBefore(d))){ result= false;}
-                if(b.isAfter(c)&&(b.isBefore(c)||b.isEqual(c))){result= false;}
+                if(b.isAfter(c)&&(b.isBefore(d)||b.isEqual(d))){result= false;}
                 if((a.isBefore(c)||a.isEqual(c))&&((b.isAfter(d))||(b.isEqual(d)))){result= false;}
             }
         }
