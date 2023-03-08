@@ -6,6 +6,8 @@ import javafx.collections.ObservableList;
 
 import java.sql.*;
 import java.time.*;
+import java.time.temporal.ChronoUnit;
+import java.time.temporal.TemporalUnit;
 
 public abstract class DbHelper {
     public static int nextCustomerId = 3;
@@ -323,10 +325,8 @@ public abstract class DbHelper {
         LocalDateTime a=appointment.getStartDateTime();
         LocalDateTime b=appointment.getEndDateTime();
         boolean result=true;
-        ObservableList<Appointment> appsFilteredByID= FXCollections.observableArrayList();
         for(Appointment appointment1: allAppointments){
             if((appointment1.getCustomerId()==appointment.getCustomerId())){
-                appsFilteredByID.add(appointment1);
                 LocalDateTime c=appointment1.getStartDateTime();
                 LocalDateTime d=appointment1.getEndDateTime();
                 if((a.isAfter(c)||a.isEqual(c))&&(a.isBefore(d))){ result= false;}
@@ -337,6 +337,19 @@ public abstract class DbHelper {
         return result;
     }
 
+    ///////////////////////////////////////////////////////15 min appointment alert///////////////////////////////////////
+    public static boolean isAppWithin15 (){
+        boolean result= false;
+        LocalDateTime now=LocalDateTime.now();
+        LocalDateTime after15=now.plus(15, ChronoUnit.MINUTES);
+        for(Appointment appointment: allAppointments){
+            LocalDateTime a=appointment.getStartDateTime();
+            if((a.isAfter(now)||a.isEqual(now))&&(a.isBefore(after15)||(a.isEqual(after15)))){
+                result = true;
+            }
+        }
+        return result;
+    }
 
 
 

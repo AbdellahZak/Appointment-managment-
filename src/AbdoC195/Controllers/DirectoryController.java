@@ -104,8 +104,8 @@ public class DirectoryController implements Initializable {
         DbHelper.allAppointments.remove(appointment);
         DbHelper.deleteAppointmentByIdDb(appointment.getAppointmentId());
         alert = new Alert(Alert.AlertType.ERROR);
-        alert.setTitle("Appointment Cancele ");
-        alert.setContentText("Cancelling Appointment ID: "+appointment.getAppointmentId()+" Type: "+appointment.getType());
+        alert.setTitle(" Appointment Canceled ");
+        alert.setContentText(" Cancelling Appointment ID: "+appointment.getAppointmentId()+" Type: "+appointment.getType());
         alert.showAndWait();
     }
 
@@ -153,6 +153,7 @@ public class DirectoryController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+
         ///////////customer Table Init
         DbHelper.allCustomers.clear();
         try {
@@ -186,8 +187,21 @@ public class DirectoryController implements Initializable {
         directoryViewAppCustomerIdClmn.setCellValueFactory(new PropertyValueFactory<>("customerId"));
         directoryViewAppUserIdClmn.setCellValueFactory(new PropertyValueFactory<>("userId"));
 
+        // alert
+        if(DbHelper.isAppWithin15()==true){
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle(" Appointment Alert ");
+            alert.setContentText(" An appointment is scheduled within 15 minutes ");
+            alert.showAndWait();
+        }else{
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle(" Appointment Alert ");
+            alert.setContentText(" No appointments scheduled within 15 minutes");
+            alert.showAndWait();
+        }
 
     }
+
 
 
 
