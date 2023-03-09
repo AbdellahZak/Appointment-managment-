@@ -338,17 +338,17 @@ public abstract class DbHelper {
     }
 
     ///////////////////////////////////////////////////////15 min appointment alert///////////////////////////////////////
-    public static boolean isAppWithin15 (){
-        boolean result= false;
+    public static Appointment isAppWithin15 (){
         LocalDateTime now=LocalDateTime.now();
+        Appointment retAppointment = null;
         LocalDateTime after15=now.plus(15, ChronoUnit.MINUTES);
         for(Appointment appointment: allAppointments){
             LocalDateTime a=appointment.getStartDateTime();
             if((a.isAfter(now)||a.isEqual(now))&&(a.isBefore(after15)||(a.isEqual(after15)))){
-                result = true;
+                retAppointment=appointment;
             }
         }
-        return result;
+        return retAppointment;
     }
 
 

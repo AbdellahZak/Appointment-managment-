@@ -24,6 +24,7 @@ import java.net.URL;
 import java.sql.SQLException;
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
+import java.util.Formatter;
 import java.util.ResourceBundle;
 
 public class DirectoryController implements Initializable {
@@ -188,10 +189,11 @@ public class DirectoryController implements Initializable {
         directoryViewAppUserIdClmn.setCellValueFactory(new PropertyValueFactory<>("userId"));
 
         // alert
-        if(DbHelper.isAppWithin15()==true){
+
+        if(DbHelper.isAppWithin15()!=null){
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle(" Appointment Alert ");
-            alert.setContentText(" An appointment is scheduled within 15 minutes ");
+            alert.setContentText(" An appointment ID "+DbHelper.isAppWithin15().getAppointmentId()+" is scheduled for "+DbHelper.isAppWithin15().getStartDateTime());
             alert.showAndWait();
         }else{
             Alert alert = new Alert(Alert.AlertType.ERROR);
