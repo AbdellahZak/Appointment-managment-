@@ -30,5 +30,15 @@
       </TableView>
       <Label layoutX="55.0" layoutY="213.0" text="Filter by Contact:" />
       <ComboBox fx:id="reportViewContactComboBoxStat" layoutX="160.0" layoutY="209.0" onAction="#reportViewContactComboBox" prefWidth="150.0" />
+      <TableView fx:id="reportViewAppUserTable" layoutX="369.0" layoutY="48.0" prefHeight="141.0" prefWidth="405.0">
+         <columns>
+            <TableColumn fx:id="reportViewUserAppointmentIdClmn" prefWidth="87.0" text="Appointment ID" />
+            <TableColumn fx:id="reportViewUserAppTitleClmn" prefWidth="44.0" text="Title" />
+            <TableColumn fx:id="reportViewUserAppStartDateClmn" prefWidth="152.0" text="Start date and time" />
+            <TableColumn fx:id="reportViewUserAppEndDateClmn" prefWidth="121.0" text="End date and time" />
+         </columns>
+      </TableView>
+      <Label layoutX="446.0" layoutY="23.0" text="Filter by User:" />
+      <ComboBox fx:id="reportViewUserComboBoxStat" layoutX="590.0" layoutY="19.0" onAction="#reportViewUserComboBox" prefWidth="150.0" />
    </children>
 </AnchorPane>

@@ -384,6 +384,18 @@ public abstract class DbHelper {
             }
     }
 
+    public static ObservableList<Appointment> reportApps3= FXCollections.observableArrayList();
+    public static void addAppointmentreport3List(Appointment appointment){
+        reportApps3.add(appointment);
+    }
+    public static void getAppointmentForReport3(User user) {
+        for(Appointment appointment:allAppointments){
+            if(user.getUser_ID()==appointment.getUserId()){
+                addAppointmentreport3List (appointment);
+            }
+        }
+    }
+
 
 
 
