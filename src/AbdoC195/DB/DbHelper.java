@@ -372,8 +372,23 @@ public abstract class DbHelper {
     }
 
     /////////////////////////////////////////////////////Reports///////////////////////////////////////////////////////////
-
-
+    public static ObservableList<Appointment> reportApps2= FXCollections.observableArrayList();
+    public static void addAppointmentreport2List(Appointment appointment){
+        reportApps2.add(appointment);
+    }
+    public static void getAppointmentForReport2() throws SQLException {
+        String sql="SELECT Type,EXTRACT(MONTH FROM Start) as Month,count(*) as Count\n" +
+                "FROM appointments\n" +
+                "group by Type, Month";
+        PreparedStatement ps=JDBC.connection.prepareStatement(sql);
+        ResultSet rs=ps.executeQuery();
+        while (rs.next()){
+            String type= rs.getString("Type");
+            int month=rs.getInt("Month");
+            int count=rs.getInt("Count");
+            addAppointmentreport2List (new Appointment(type,month,count));
+        }
+    }
 
 
 
