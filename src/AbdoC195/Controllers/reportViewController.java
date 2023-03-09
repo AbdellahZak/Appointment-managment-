@@ -24,7 +24,9 @@ public class reportViewController implements Initializable {
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
-        reportsViewTableView.setItems(DbHelper.reportApps;
+        reportsViewTableView.setItems(DbHelper.reportApps);
         reportsViewTypeClmn.setCellValueFactory(new PropertyValueFactory<>("type"));
+        reportsViewMonthClmn.setCellValueFactory(new PropertyValueFactory<>("month"));
+        reportsViewCountClmn.setCellValueFactory(new PropertyValueFactory<>("count"));
     }
 }

@@ -205,6 +205,10 @@ public class DirectoryController implements Initializable {
     }
 
 
-    public void directoryViewAppReportsButton(ActionEvent actionEvent) {
+    public void directoryViewAppReportsButton(ActionEvent actionEvent) throws IOException {
+        stage =(Stage)((Button)actionEvent.getSource()).getScene().getWindow();
+        scene = FXMLLoader.load(getClass().getResource("/AbdoC195/Views/reportsView.fxml"));
+        stage.setScene(new Scene(scene));
+        stage.show();
     }
 }
