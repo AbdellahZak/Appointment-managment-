@@ -60,6 +60,7 @@
             </RadioButton>
             <RadioButton layoutX="590.0" layoutY="207.0" mnemonicParsing="false" onAction="#directoryViewAppWeekRadioBtn" text="By Week" toggleGroup="$A1" />
             <RadioButton layoutX="677.0" layoutY="207.0" mnemonicParsing="false" onAction="#directoryViewAppAMonthRadioBtn" text="By Month" toggleGroup="$A1" />
+            <Button layoutX="666.0" layoutY="421.0" mnemonicParsing="false" onAction="#directoryViewAppReportsButton" text="REPORTS" />
          </children>
       </AnchorPane>
    </children>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="AbdoC195.Controllers.reportViewController">
+   <children>
+      <TableView fx:id="reportsViewTableView" layoutX="55.0" layoutY="45.0" prefHeight="147.0" prefWidth="224.0">
+        <columns>
+          <TableColumn fx:id="reportsViewTypeClmn" prefWidth="75.0" text="Type" />
+          <TableColumn fx:id="reportsViewMonthClmn" prefWidth="75.0" text="Month" />
+            <TableColumn fx:id="reportsViewCountClmn" prefWidth="75.0" text="Count" />
+        </columns>
+      </TableView>
+      <Label layoutX="55.0" layoutY="14.0" text="Appointments by type and month" />
+   </children>
+</AnchorPane>

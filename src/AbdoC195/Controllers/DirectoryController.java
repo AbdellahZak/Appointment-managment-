@@ -205,6 +205,6 @@ public class DirectoryController implements Initializable {
     }
 
 
-
-
+    public void directoryViewAppReportsButton(ActionEvent actionEvent) {
+    }
 }

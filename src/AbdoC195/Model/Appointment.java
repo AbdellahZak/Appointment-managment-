@@ -14,6 +14,8 @@ public class Appointment {
     private LocalDateTime endDateTime;
     private int customerId;
     private int userId;
+    private int month;
+    private int count;
 
 
     public Appointment(int appointmentId, String title, String description, String location, String contact, String type, LocalDateTime startDateTime, LocalDateTime endDateTime, int customerId, int userId) {
@@ -42,6 +44,11 @@ public class Appointment {
         this.endDateTime = endDateTime;
         this.customerId = customerId;
         this.userId = userId;
+    }
+    public Appointment(String type,int month, int count) {
+        this.type = type;
+        this.month = month;
+        this.count = count;
     }
     public int getAppointmentId() {
         return appointmentId;
@@ -128,5 +135,20 @@ public class Appointment {
 
     public void setUserId(int userId) {
         this.userId = userId;
+    }
+    public int getMonth() {
+        return month;
+    }
+
+    public void setMonth(int month) {
+        this.month = month;
+    }
+
+    public int getCount() {
+        return count;
+    }
+
+    public void setCount(int count) {
+        this.count = count;
     }
 }
