@@ -8,8 +8,9 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="AbdoC195.Controllers.addAppointmentController">
+<AnchorPane prefHeight="400.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="AbdoC195.Controllers.addAppointmentController">
     <children>
         <AnchorPane prefHeight="394.0" prefWidth="600.0">
             <children>
@@ -56,6 +57,7 @@
             <Label layoutX="322.0" layoutY="240.0" text="Hour" />
             <Label layoutX="457.0" layoutY="215.0" text="Minute" />
             <Label layoutX="457.0" layoutY="240.0" text="Minute" />
+            <Text fx:id="addViewTextArea" layoutX="338.0" layoutY="69.0" strokeType="OUTSIDE" strokeWidth="0.0" />
             </children>
         </AnchorPane>
     </children>

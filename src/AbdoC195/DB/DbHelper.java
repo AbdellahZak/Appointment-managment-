@@ -10,7 +10,6 @@ import java.time.temporal.ChronoUnit;
 import java.time.temporal.TemporalUnit;
 
 public abstract class DbHelper {
-    public static int nextCustomerId = 3;
 
     //////////////////////////////////////////////User///////////////////////////////////////////////
 
@@ -25,6 +24,7 @@ public abstract class DbHelper {
     }
 
     public static void getUsersDb() throws SQLException {
+
         String sql="SELECT User_ID, User_Name,Password FROM users";
         PreparedStatement ps=JDBC.connection.prepareStatement(sql);
         ResultSet rs=ps.executeQuery();
@@ -395,6 +395,8 @@ public abstract class DbHelper {
             }
         }
     }
+    ///////////////////////////////////////////////////////lambda Expression/////////////////////////////////////////////
+    GenInterface switchView= () -> System.out.print("hellow world");
 
 
 
