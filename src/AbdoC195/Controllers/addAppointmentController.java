@@ -108,7 +108,7 @@ public class addAppointmentController implements Initializable {
             }
             DbHelper.addAppointment(appointment);
         }catch (NullPointerException e){
-            addViewTextArea.setText("   PLease make sure all Users customers and contacts are selected ");
+            addViewTextArea.setText("   PLease make sure all Users,customers and contacts are selected \n Dates and correct times as well. ");
             return;
 
         }

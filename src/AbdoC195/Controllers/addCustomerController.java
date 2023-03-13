@@ -13,6 +13,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -23,6 +24,7 @@ import java.util.ResourceBundle;
 import static AbdoC195.DB.DbHelper.*;
 
 public class addCustomerController implements Initializable {
+    public Text addCustomerTextArea;
     Stage stage;
     Parent scene;
     public ComboBox<Countries> addCustomerViewCountriesComboStat;
@@ -49,9 +51,20 @@ public class addCustomerController implements Initializable {
         String address=addCustomerViewAddressTxt.getText();
         String postalCode=addCustomerViewPostalCodeTxt.getText();
         String phoneNumber=addCustomerViewPhoneNumberTxt.getText();
-        Divison divison= addCustomerViewStateComboStat.getSelectionModel().getSelectedItem();
-        int  first_levelD=divison.getDivision_Id();
-        addCustomer(new Customer(customer_Id,customer_Name,address,postalCode,phoneNumber,first_levelD));
+        if(customer_Name.isBlank()||address.isBlank()||postalCode.isBlank()||phoneNumber.isBlank()){
+            addCustomerTextArea.setText(" PLease make sure all text fields are filled. ");
+            return;
+        }
+        try{
+            Divison divison= addCustomerViewStateComboStat.getSelectionModel().getSelectedItem();
+            int  first_levelD=divison.getDivision_Id();
+            Customer customer=new Customer(customer_Id,customer_Name,address,postalCode,phoneNumber,first_levelD);
+            addCustomer(customer);}
+        catch(NullPointerException e){
+            addCustomerTextArea.setText(" PLease make sure the customer's state and country are selected ");
+            return;
+        }
+
         stage =(Stage)((Button)actionEvent.getSource()).getScene().getWindow();
         scene = FXMLLoader.load(getClass().getResource("/AbdoC195/Views/directoryView.fxml"));
         stage.setScene(new Scene(scene));
