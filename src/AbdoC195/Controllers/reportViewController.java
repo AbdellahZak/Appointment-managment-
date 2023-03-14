@@ -5,17 +5,25 @@ import AbdoC195.Model.Appointment;
 import AbdoC195.Model.Contact;
 import AbdoC195.Model.User;
 import javafx.event.ActionEvent;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 public class reportViewController implements Initializable {
+    Stage stage;
+    Parent scene;
     public TableView<Appointment> reportsViewTableView;
     public TableColumn reportsViewTypeClmn;
     public TableColumn reportsViewMonthClmn;
@@ -39,6 +47,8 @@ public class reportViewController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        DbHelper.allUsers.clear();
+        DbHelper.allContacts.clear();
         try {
             DbHelper.getUsersDb();
         } catch (SQLException throwables) {
@@ -88,5 +98,12 @@ public class reportViewController implements Initializable {
         DbHelper.reportApps3.clear();
         User user=reportViewUserComboBoxStat.getSelectionModel().getSelectedItem();
         DbHelper.getAppointmentForReport3(user);
+    }
+
+    public void reportsViewCancelBtn(ActionEvent actionEvent) throws IOException {
+        stage =(Stage)((Button)actionEvent.getSource()).getScene().getWindow();
+        scene = FXMLLoader.load(getClass().getResource("/AbdoC195/Views/directoryView.fxml"));
+        stage.setScene(new Scene(scene));
+        stage.show();
     }
 }

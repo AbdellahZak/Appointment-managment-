@@ -4,6 +4,8 @@ import AbdoC195.Model.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
+import java.io.FileWriter;
+import java.io.IOException;
 import java.sql.*;
 import java.time.*;
 import java.time.temporal.ChronoUnit;
@@ -36,23 +38,7 @@ public abstract class DbHelper {
         }
     }
 
-
-    public static int insert(String userID, String userPassword) throws SQLException {
-        String sql = "INSERT INTO USERS (User_Name, Password) VALUES (?,?)";
-        PreparedStatement ps= JDBC.connection.prepareStatement(sql);
-        ps.setString(1,userID);
-        ps.setString(2,userPassword);
-        int rowsAffected =ps.executeUpdate();
-        return rowsAffected;
-    }
-    public static int delete(int id) throws SQLException {
-        String sql="DELETE FROM USERS WHERE User_ID=?";
-        PreparedStatement ps= JDBC.connection.prepareStatement(sql);
-        ps.setInt(1,id);
-        int rowsAffected =ps.executeUpdate();
-        return rowsAffected;
-    }
-    public static boolean VerifyNameAndPassword(String userName,String password) throws SQLException {
+    public static boolean VerifyNameAndPassword(String userName,String password) throws SQLException, IOException {
         Boolean Bname=false;
         Boolean Bpass=false;
         String sql="SELECT User_Name, Password FROM users";
@@ -67,9 +53,15 @@ public abstract class DbHelper {
             if(pass.equals(password)){
                 Bpass=true;
             }
-            if (Bname==true && Bpass==true){return true;}
+            if (Bname==true && Bpass==true){
+                FileWriter myWriter = new FileWriter("login_activity.txt",true);
+                myWriter.write("\n User: "+userName+ " " +LocalDateTime.now()+ " Attempt Successful");
+                myWriter.close();
+                return true;}
         }
-
+        FileWriter myWriter = new FileWriter("login_activity.txt",true);
+        myWriter.write("\n User: "+userName+ " " +LocalDateTime.now()+ " Attempt unsuccessful");
+        myWriter.close();
     return false;
     }
     public static User getUserById(int userId){
