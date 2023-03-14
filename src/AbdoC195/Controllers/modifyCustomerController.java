@@ -74,6 +74,7 @@ public class modifyCustomerController implements Initializable {
         int countryId= country.getCountry_Id();
         ObservableList<Divison> filteredStatesByCountry =FilterByCountryId(countryId);
         modifyCustomerViewStateComboStat.setItems(filteredStatesByCountry);
+
     }
 
     public void modifyCustomerViewStatesCombo(ActionEvent actionEvent) {
