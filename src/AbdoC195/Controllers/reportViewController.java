@@ -20,30 +20,52 @@ import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
+/** reports view controller class */
 
 public class reportViewController implements Initializable {
     Stage stage;
     Parent scene;
+    /**  */
+
     public TableView<Appointment> reportsViewTableView;
+    /** type column */
     public TableColumn reportsViewTypeClmn;
+    /** month column */
     public TableColumn reportsViewMonthClmn;
+    /** count column */
     public TableColumn reportsViewCountClmn;
+    /** app table */
     public TableView reportViewAppTable;
+    /** app id column */
     public TableColumn reportViewAppointmentIdClmn;
+    /** app title column */
     public TableColumn reportViewAppTitleClmn;
+    /** app description column */
     public TableColumn reportViewAppDesciptionClmn;
+    /** app location column */
     public TableColumn reportViewAppLocationClmn;
+    /** app type column */
     public TableColumn reportViewAppTypeClmn;
+    /** app start date column */
     public TableColumn reportViewAppStartDateClmn;
+    /** app end date column */
     public TableColumn reportViewAppEndDateClmn;
+    /** app customer id column */
     public TableColumn reportViewAppCustomerIdClmn;
+    /** contact combo box */
     public ComboBox<Contact> reportViewContactComboBoxStat;
+    /** app user table */
     public TableView<Appointment> reportViewAppUserTable;
+    /** app id column */
     public TableColumn reportViewUserAppointmentIdClmn;
+    /** app title column */
     public TableColumn reportViewUserAppTitleClmn;
+    /** app start date column */
     public TableColumn reportViewUserAppStartDateClmn;
+    /** app end date column */
     public TableColumn reportViewUserAppEndDateClmn;
     public ComboBox<User> reportViewUserComboBoxStat;
+    /** initialize methode */
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -87,18 +109,21 @@ public class reportViewController implements Initializable {
         reportViewUserAppStartDateClmn.setCellValueFactory(new PropertyValueFactory<>("startDateTime"));
         reportViewUserAppEndDateClmn.setCellValueFactory(new PropertyValueFactory<>("endDateTime"));
     }
+    /** contact combo box action event */
 
     public void reportViewContactComboBox(ActionEvent actionEvent) {
         DbHelper.reportApps2.clear();
         Contact contact=reportViewContactComboBoxStat.getSelectionModel().getSelectedItem();
         DbHelper.getAppointmentForReport2(contact);
     }
+    /** user combo box action event */
 
     public void reportViewUserComboBox(ActionEvent actionEvent) {
         DbHelper.reportApps3.clear();
         User user=reportViewUserComboBoxStat.getSelectionModel().getSelectedItem();
         DbHelper.getAppointmentForReport3(user);
     }
+    /** cancel button action event */
 
     public void reportsViewCancelBtn(ActionEvent actionEvent) throws IOException {
         stage =(Stage)((Button)actionEvent.getSource()).getScene().getWindow();

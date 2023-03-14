@@ -75,7 +75,7 @@ public class modifyCustomerController implements Initializable {
 
 
     }
-    /** customer object view tras  */
+    /** customer object view transfer   */
     public void passCustomer(Customer customer) throws SQLException {
         modifyCustomerViewIdTxt.setText(Integer.toString(customer.getCustomer_Id()));
         modifyCustomerViewNameTxt.setText(customer.getCustomer_Name());
@@ -88,7 +88,7 @@ public class modifyCustomerController implements Initializable {
         modifyCustomerViewStateComboStat.setValue(divison);
     }
 
-
+    /** country combo box action event */
     public void modifyCustomerViewCountriesCombo(ActionEvent actionEvent) throws SQLException {
         Countries country= modifyCustomerViewCountriesComboStat.getSelectionModel().getSelectedItem();
         try {
@@ -104,6 +104,8 @@ public class modifyCustomerController implements Initializable {
 
     public void modifyCustomerViewStatesCombo(ActionEvent actionEvent) {
     }
+    /** class initialize methode */
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         allCountries.clear();
