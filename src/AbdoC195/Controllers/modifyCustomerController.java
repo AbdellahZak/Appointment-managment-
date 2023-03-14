@@ -20,8 +20,7 @@ import java.net.URL;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
 
-import static AbdoC195.DB.DbHelper.FilterByCountryId;
-import static AbdoC195.DB.DbHelper.getCountriesDb;
+import static AbdoC195.DB.DbHelper.*;
 
 public class modifyCustomerController implements Initializable {
     Stage stage;
@@ -66,7 +65,8 @@ public class modifyCustomerController implements Initializable {
         modifyCustomerViewPostalCodeTxt.setText(customer.getPostalCode());
         Countries country=DbHelper.getCountryByDivisonId(customer.getFirst_levelD());
         modifyCustomerViewCountriesComboStat.setValue(country);
-        modifyCustomerViewStateComboStat.setPromptText("please select a state");
+        Divison divison=DbHelper.getDivisionByDivisonId(customer.getFirst_levelD());
+        modifyCustomerViewStateComboStat.setValue(divison);
     }
 
 
@@ -82,11 +82,13 @@ public class modifyCustomerController implements Initializable {
     }
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-
+        allCountries.clear();
         try {
-            modifyCustomerViewCountriesComboStat.setItems(getCountriesDb());
+            DbHelper.getCountriesDb();
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
+            modifyCustomerViewCountriesComboStat.setItems(allCountries);
+
     }
 }

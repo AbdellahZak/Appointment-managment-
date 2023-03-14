@@ -7,7 +7,6 @@ import javafx.collections.ObservableList;
 import java.sql.*;
 import java.time.*;
 import java.time.temporal.ChronoUnit;
-import java.time.temporal.TemporalUnit;
 
 public abstract class DbHelper {
 
@@ -180,7 +179,7 @@ public abstract class DbHelper {
         allCountries.add(country);
     }
 
-    public static ObservableList<Countries> getCountriesDb() throws SQLException {
+    public static void getCountriesDb() throws SQLException {
         String sql="SELECT Country_ID, Country FROM countries";
         PreparedStatement ps=JDBC.connection.prepareStatement(sql);
         ResultSet rs=ps.executeQuery();
@@ -190,7 +189,6 @@ public abstract class DbHelper {
             String country= rs.getString("Country");
             addCountry(new Countries(country_Id, country));
         }
-        return getCountries();
     }
     /////////////////////////////////////////////////////Appointment///////////////////////////////////////////
 
@@ -419,6 +417,26 @@ public abstract class DbHelper {
 
         }
         return country1;
+    }
+    public static Divison getDivisionByDivisonId(int divisionId) throws SQLException {
+        String sql = "SELECT Division\n" +
+                "FROM first_level_divisions\n" +
+                "Where Division_ID=?";
+        PreparedStatement ps = JDBC.connection.prepareStatement(sql);
+        ps.setInt(1, divisionId);
+        ResultSet rs = ps.executeQuery();
+        Divison divison1 = null;
+        while (rs.next()) {
+            String divisionName = rs.getString("Division");
+            for (Divison divison : allDivisions) {
+                if (divison.getDivision().equals(divisionName)) {
+                    divison1 = divison;
+                }
+
+            }
+
+        }
+        return divison1;
     }
 
 

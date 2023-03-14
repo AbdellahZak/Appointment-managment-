@@ -79,12 +79,16 @@ public class addCustomerController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        addCustomerViewCountriesComboStat.setPromptText("PLease select a country");
+        allCountries.clear();
         try {
-            addCustomerViewCountriesComboStat.setItems(getCountriesDb());
+            DbHelper.getCountriesDb();
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
+        addCustomerViewCountriesComboStat.setPromptText("PLease select a country");
+
+            addCustomerViewCountriesComboStat.setItems(allCountries);
+
         addCustomerViewStateComboStat.setPromptText("please select a state");
     }
 
