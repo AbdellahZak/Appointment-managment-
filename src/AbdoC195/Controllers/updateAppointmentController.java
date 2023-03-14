@@ -23,28 +23,49 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.ResourceBundle;
+/** update app view controller class */
 
 public class updateAppointmentController implements Initializable {
+    /** alert text field  */
+
     public Text updateAppTextArea;
     Stage stage;
     Parent scene;
 
+    /** app id field */
     public TextField updateAppViewAppIdTxt;
+    /** app title field */
     public TextField updateAppViewTitleTxt;
+    /** app description field */
     public TextField updateAppViewDescriptionTxt;
+    /** app location field */
     public TextField updateAppViewLocationTxt;
+    /** app contact combo box */
     public ComboBox<Contact> updateAppViewContactComboStat;
+    /** app type field */
     public TextField updateAppViewTypeTxt;
+    /** app date picker combo */
     public DatePicker updateAppViewStartDatePicker;
+    /** app date picket combo box */
     public DatePicker updateAppViewEndDatePicker;
+    /** app start hour picker combo */
     public ComboBox updateAppViewStartHourPickerCombo;
+    /** app start minute picker combo */
     public ComboBox updateAppViewStartMinutePickerCombo;
+    /** app end hour picker */
     public ComboBox updateAppViewEndHourPickerCombo;
+    /** app end minute picker */
     public ComboBox updateAppViewEndMinutePickerCombo;
+    /** app customer id combo */
     public ComboBox<Customer> updateAppViewCustomerIdComboStat;
+    /** app user id combo */
     public ComboBox<User> updateAppViewUserIdComboStat;
+    /** app hour observable list */
     ObservableList<String> hours = FXCollections.observableArrayList(); // from the code repository.
+    /** app minute observable list  */
     ObservableList<String> minutes = FXCollections.observableArrayList();
+    /** pass app object between directory and app update views */
+
     public void passAppointment(Appointment appointment){
 
         updateAppViewAppIdTxt.setText(Integer.toString(appointment.getAppointmentId()));
@@ -69,6 +90,7 @@ public class updateAppointmentController implements Initializable {
         updateAppViewEndMinutePickerCombo.setValue(endMinute);
 
     }
+    /** update button action event */
 
     public void updateAppViewUpdateBtn(ActionEvent actionEvent) throws IOException, SQLException {
         int appointmentId= Integer.parseInt(updateAppViewAppIdTxt.getText());
@@ -116,6 +138,7 @@ public class updateAppointmentController implements Initializable {
         stage.setScene(new Scene(scene));
         stage.show();
     }
+    /** cancel button action event */
 
     public void updateAppViewCancelBtn(ActionEvent actionEvent) throws IOException {
         stage =(Stage)((Button)actionEvent.getSource()).getScene().getWindow();
@@ -123,6 +146,8 @@ public class updateAppointmentController implements Initializable {
         stage.setScene(new Scene(scene));
         stage.show();
     }
+    /** initialize methode */
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         DbHelper.allUsers.clear();
