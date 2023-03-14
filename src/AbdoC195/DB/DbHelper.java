@@ -145,17 +145,20 @@ public abstract class DbHelper {
 
     ///////////////////////////////////////////////Division////////////////////////////////////////////////////////
 
-    /**  */
+    /** all divisions/states observable list */
 
     public static ObservableList<Divison> allDivisions= FXCollections.observableArrayList();
+    /** get divisions ol */
 
     public static ObservableList<Divison> getDivisions(){
         return allDivisions;
     }
+    /** add division to ol */
 
     public static void addDiviosn(Divison division){
         allDivisions.add(division);
     }
+    /** get division from db */
 
     public static void getDivisionsDb() throws SQLException {
         String sql="SELECT Division_ID, Division, Country_ID FROM first_level_divisions";
@@ -169,6 +172,8 @@ public abstract class DbHelper {
             addDiviosn(new Divison(division_Id,division,country_ID));
         }
     }
+    /** filter divisions by country */
+
     public static ObservableList<Divison> FilterByCountryId(int countryId) throws SQLException {
         ObservableList<Divison> namedStates = FXCollections.observableArrayList();
         ObservableList<Divison> allDivisions= DbHelper.getDivisions();
@@ -185,16 +190,20 @@ public abstract class DbHelper {
 
 
     /////////////////////////////////////////////countries/////////////////////////////////////////////////////////////////////
+    /** countries observable list */
 
     public static ObservableList<Countries> allCountries= FXCollections.observableArrayList();
+    /** get countries ol */
 
     public static ObservableList<Countries> getCountries(){
         return allCountries;
     }
+    /** add countries to observable list */
 
     public static void addCountry(Countries country){
         allCountries.add(country);
     }
+    /** get countries from db */
 
     public static void getCountriesDb() throws SQLException {
         String sql="SELECT Country_ID, Country FROM countries";
@@ -208,17 +217,17 @@ public abstract class DbHelper {
         }
     }
     /////////////////////////////////////////////////////Appointment///////////////////////////////////////////
+    /** appointment observable list */
 
-   public static ObservableList<Appointment> allAppointments= FXCollections.observableArrayList();
+    public static ObservableList<Appointment> allAppointments= FXCollections.observableArrayList();
+    /** add app to observable list  */
 
-    public static ObservableList<Appointment> getAppointments() throws SQLException {
-        return allAppointments;
-    }
     public static void addAppointmentList(Appointment appointment){
         allAppointments.add(appointment);
     }
+    /** add app to db  */
 
-   public static void addAppointment(Appointment appointment) throws SQLException {
+    public static void addAppointment(Appointment appointment) throws SQLException {
         String sql = "INSERT INTO APPOintments (Title,Description,Location,Type,Contact_ID,Start, End, Customer_ID, User_ID ) VALUES (?,?,?,?,?,?,?,?,?)";
         PreparedStatement ps= JDBC.connection.prepareStatement(sql);
         ps.setString(1,appointment.getTitle());
@@ -236,6 +245,7 @@ public abstract class DbHelper {
         ps.setInt(9,appointment.getUserId());
         ps.executeUpdate();
     }
+    /** get app from db */
 
     public static void getAppointmentDb() throws SQLException {
         String sql="SELECT Appointment_ID, Title, Description, Location,contacts.Contact_Name, Type, Start, End,Customer_ID,User_ID\n" +
@@ -259,6 +269,7 @@ public abstract class DbHelper {
             addAppointmentList (new Appointment(appointment_Id,title,description,location,contact,type,start,end,customerId,userId));
         }
     }
+    /** Delete app from db */
 
     public static void deleteAppointmentByIdDb(int customerId) throws SQLException {
         String sql="DELETE FROM appointments WHERE Appointment_ID=?";
@@ -266,7 +277,9 @@ public abstract class DbHelper {
         ps.setInt(1,customerId);
         ps.executeUpdate();
     }
-  public static void updateAppointmentRowById(Appointment appointment) throws SQLException {
+    /** update app in db */
+
+    public static void updateAppointmentRowById(Appointment appointment) throws SQLException {
       String sql = "UPDATE appointments SET Title=?,Description=?,Location=?,Type=?,Start=?, End=?,Contact_ID=?,Customer_ID=?,User_ID=? WHERE Appointment_ID=?";
       PreparedStatement ps= JDBC.connection.prepareStatement(sql);
       ps.setInt(10,appointment.getAppointmentId());
@@ -283,10 +296,16 @@ public abstract class DbHelper {
   }
 
                                                         ///Appointment reports///
+    /** report app ol */
+
     public static ObservableList<Appointment> reportApps= FXCollections.observableArrayList();
+    /** add report app to ol */
+
     public static void addAppointmentreportList(Appointment appointment){
         reportApps.add(appointment);
     }
+    /** get report apps from db */
+
     public static void getAppointmentForReport() throws SQLException {
         String sql="SELECT Type,EXTRACT(MONTH FROM Start) as Month,count(*) as Count\n" +
                 "FROM appointments\n" +
@@ -302,15 +321,19 @@ public abstract class DbHelper {
     }
 
     /////////////////////////////////////////////////////Contact//////////////////////////////////////////////////////////////
+    /** contacts observable list */
     public static ObservableList<Contact> allContacts= FXCollections.observableArrayList();
 
+    /** get contacts  */
     public static ObservableList<Contact> getContacts(){
         return allContacts;
     }
 
+    /** add contact obj to ol */
     public static void addContact(Contact contact){
         allContacts.add(contact);
     }
+    /** get contacts from db */
 
     public static ObservableList<Contact> getContactsDb() throws SQLException {
         String sql="SELECT Contact_ID, Contact_Name, Email FROM contacts";
@@ -325,6 +348,8 @@ public abstract class DbHelper {
         }
         return getContacts();
     }
+
+    /** get contact obj by name */
     public static Contact getContactByName(String contactName){
         Contact contact=null;
         for(Contact contact1: allContacts){
@@ -336,16 +361,17 @@ public abstract class DbHelper {
     }
 
     ////////////////////////////////////////////////////Time conversions////////////////////////////////////////////////////////
-    //timestamp to localdatetime
+    /** timestamp to localdatetime */
     public static LocalDateTime UtcToLocalZoned(Timestamp dateTimeDb){
         LocalDateTime local=dateTimeDb.toLocalDateTime();
         return local;
     }
-    //localdatetime to timestamp
+    /** localdatetime to timestamp */
     public static Timestamp LocalToTimestamp(LocalDateTime localDateTime){
         Timestamp time=Timestamp.valueOf(localDateTime);
         return time;
     }
+    /** verify local date time is withing est business hours */
     public static Boolean isWithinBusinessHours(LocalDateTime localDateTime){
         Boolean result=false;
         LocalDate localeDate=localDateTime.toLocalDate();
@@ -367,6 +393,7 @@ public abstract class DbHelper {
     }
 
     ////////////////////////////////////////////////// Overlap ///////////////////////////////////////////////////////////////
+    /** verify overlap of apps */
     public static boolean LookForOverlap(Appointment appointment){
         LocalDateTime a=appointment.getStartDateTime();
         LocalDateTime b=appointment.getEndDateTime();
@@ -384,6 +411,7 @@ public abstract class DbHelper {
     }
 
     ///////////////////////////////////////////////////////15 min appointment alert///////////////////////////////////////
+    /** verify app with 15 min */
     public static Appointment isAppWithin15 (){
         LocalDateTime now=LocalDateTime.now();
         Appointment retAppointment = null;
@@ -398,6 +426,7 @@ public abstract class DbHelper {
     }
 
     /////////////////////////////////////////////////////Reports///////////////////////////////////////////////////////////
+    /** app for report observable list */
     public static ObservableList<Appointment> reportApps2= FXCollections.observableArrayList();
     public static void addAppointmentreport2List(Appointment appointment){
         reportApps2.add(appointment);
@@ -422,6 +451,7 @@ public abstract class DbHelper {
         }
     }
     ///////////////////////////////////////////////////////Combo box auto select/////////////////////////////////////////////
+    /** get country object by division id  */
 
     public static Countries getCountryByDivisonId(int divisionId) throws SQLException {
         String sql = "SELECT Country \n" +
@@ -444,6 +474,8 @@ public abstract class DbHelper {
         }
         return country1;
     }
+    /** get division obj by division id */
+
     public static Divison getDivisionByDivisonId(int divisionId) throws SQLException {
         String sql = "SELECT Division\n" +
                 "FROM first_level_divisions\n" +
