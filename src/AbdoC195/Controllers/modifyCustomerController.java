@@ -13,6 +13,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -23,6 +24,7 @@ import java.util.ResourceBundle;
 import static AbdoC195.DB.DbHelper.*;
 
 public class modifyCustomerController implements Initializable {
+    public Text updateCustomerTextArea;
     Stage stage;
     Parent scene;
 
@@ -41,8 +43,16 @@ public class modifyCustomerController implements Initializable {
         String customerAdrress=modifyCustomerViewAddressTxt.getText();
         String customerPostalCode= modifyCustomerViewPostalCodeTxt.getText();
         String customerPhoneNumber= modifyCustomerViewPhoneNumberTxt.getText();
-        int divisionId= modifyCustomerViewStateComboStat.getSelectionModel().getSelectedItem().getDivision_Id();
-        DbHelper.updateCustomerRowById(new Customer(customerId,customerName,customerAdrress,customerPostalCode,customerPhoneNumber,divisionId));
+        if(customerName.isBlank()||customerAdrress.isBlank()||customerPostalCode.isBlank()||customerPhoneNumber.isBlank()){
+            updateCustomerTextArea.setText(" PLease make sure all text fields are filled. ");
+            return;
+        }
+        try{
+            int divisionId= modifyCustomerViewStateComboStat.getSelectionModel().getSelectedItem().getDivision_Id();
+            DbHelper.updateCustomerRowById(new Customer(customerId,customerName,customerAdrress,customerPostalCode,customerPhoneNumber,divisionId));}
+        catch (NullPointerException e){
+            updateCustomerTextArea.setText(" PLease make sure the customer's state and country are selected ");
+            return;}
         stage =(Stage)((Button)actionEvent.getSource()).getScene().getWindow();
         scene = FXMLLoader.load(getClass().getResource("/AbdoC195/Views/directoryView.fxml"));
         stage.setScene(new Scene(scene));
@@ -72,9 +82,14 @@ public class modifyCustomerController implements Initializable {
 
     public void modifyCustomerViewCountriesCombo(ActionEvent actionEvent) throws SQLException {
         Countries country= modifyCustomerViewCountriesComboStat.getSelectionModel().getSelectedItem();
-        int countryId= country.getCountry_Id();
-        ObservableList<Divison> filteredStatesByCountry =FilterByCountryId(countryId);
-        modifyCustomerViewStateComboStat.setItems(filteredStatesByCountry);
+        try {
+            int countryId= country.getCountry_Id();
+            ObservableList<Divison> filteredStatesByCountry =FilterByCountryId(countryId);
+            modifyCustomerViewStateComboStat.setItems(filteredStatesByCountry);
+        }catch (NullPointerException e){return;}
+
+
+
 
     }
 
@@ -83,12 +98,19 @@ public class modifyCustomerController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         allCountries.clear();
+        allDivisions.clear();
+        try {
+            DbHelper.getDivisionsDb();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
         try {
             DbHelper.getCountriesDb();
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
             modifyCustomerViewCountriesComboStat.setItems(allCountries);
+            modifyCustomerViewStateComboStat.setItems(allDivisions);
 
     }
 }

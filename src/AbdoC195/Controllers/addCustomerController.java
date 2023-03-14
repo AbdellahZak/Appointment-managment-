@@ -87,7 +87,7 @@ public class addCustomerController implements Initializable {
         }
         addCustomerViewCountriesComboStat.setPromptText("PLease select a country");
 
-            addCustomerViewCountriesComboStat.setItems(allCountries);
+        addCustomerViewCountriesComboStat.setItems(allCountries);
 
         addCustomerViewStateComboStat.setPromptText("please select a state");
     }

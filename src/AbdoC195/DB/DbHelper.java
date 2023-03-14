@@ -139,7 +139,7 @@ public abstract class DbHelper {
         allDivisions.add(division);
     }
 
-    public static ObservableList<Divison> getDivisionsDb() throws SQLException {
+    public static void getDivisionsDb() throws SQLException {
         String sql="SELECT Division_ID, Division, Country_ID FROM first_level_divisions";
         PreparedStatement ps=JDBC.connection.prepareStatement(sql);
         ResultSet rs=ps.executeQuery();
@@ -150,11 +150,10 @@ public abstract class DbHelper {
             int country_ID =rs.getInt("Country_ID");
             addDiviosn(new Divison(division_Id,division,country_ID));
         }
-        return getDivisions();
     }
     public static ObservableList<Divison> FilterByCountryId(int countryId) throws SQLException {
         ObservableList<Divison> namedStates = FXCollections.observableArrayList();
-        ObservableList<Divison> allDivisions= DbHelper.getDivisionsDb();
+        ObservableList<Divison> allDivisions= DbHelper.getDivisions();
 
         for(Divison division: allDivisions){
             if(division.getCountry_Id()==countryId){
