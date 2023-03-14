@@ -13,6 +13,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -24,6 +25,7 @@ import java.time.LocalTime;
 import java.util.ResourceBundle;
 
 public class updateAppointmentController implements Initializable {
+    public Text updateAppTextArea;
     Stage stage;
     Parent scene;
 
@@ -49,22 +51,22 @@ public class updateAppointmentController implements Initializable {
         updateAppViewTitleTxt.setText(appointment.getTitle());
         updateAppViewDescriptionTxt.setText(appointment.getDescription());
         updateAppViewLocationTxt.setText(appointment.getLocation());
-        updateAppViewContactComboStat.setPromptText(appointment.getContact());
         updateAppViewTypeTxt.setText(appointment.getType());
-        updateAppViewCustomerIdComboStat.setPromptText(Integer.toString(appointment.getCustomerId()));
-        updateAppViewUserIdComboStat.setPromptText(Integer.toString(appointment.getUserId()));
+        updateAppViewContactComboStat.setValue(DbHelper.getContactByName(appointment.getContact()));
+        updateAppViewCustomerIdComboStat.setValue(DbHelper.getCustomerById(appointment.getCustomerId()));
+        updateAppViewUserIdComboStat.setValue(DbHelper.getUserById(appointment.getUserId()));
         LocalDate startDate=appointment.getStartDateTime().toLocalDate();
         LocalDate endDate=appointment.getStartDateTime().toLocalDate();
-        updateAppViewStartDatePicker.setPromptText(startDate.toString());
-        updateAppViewEndDatePicker.setPromptText(endDate.toString());
+        updateAppViewStartDatePicker.setValue(startDate);
+        updateAppViewEndDatePicker.setValue(endDate);
         String startHour = String.valueOf(appointment.getStartDateTime().getHour());
         String startMinute = String.valueOf(appointment.getStartDateTime().getMinute());
         String endHour = String.valueOf(appointment.getEndDateTime().getHour());
         String endMinute = String.valueOf(appointment.getEndDateTime().getMinute());
-        updateAppViewStartHourPickerCombo.setPromptText(startHour);
-        updateAppViewEndHourPickerCombo.setPromptText(endHour);
-        updateAppViewStartMinutePickerCombo.setPromptText(startMinute);
-        updateAppViewEndMinutePickerCombo.setPromptText(endMinute);
+        updateAppViewStartHourPickerCombo.setValue(startHour);
+        updateAppViewEndHourPickerCombo.setValue(endHour);
+        updateAppViewStartMinutePickerCombo.setValue(startMinute);
+        updateAppViewEndMinutePickerCombo.setValue(endMinute);
 
     }
 

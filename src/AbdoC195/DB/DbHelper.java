@@ -72,6 +72,15 @@ public abstract class DbHelper {
 
     return false;
     }
+    public static User getUserById(int userId){
+        User user=null;
+        for(User user1: allUsers){
+            if(user1.getUser_ID()==userId){
+                user=user1;
+            }
+        }
+        return user;
+    }
 ////////////////////////////////////////////////Customers////////////////////////////////////////////////
     public static ObservableList<Customer> allCustomers= FXCollections.observableArrayList();
 
@@ -124,6 +133,15 @@ public abstract class DbHelper {
         ps.setString(4,customer.getPhoneNumber());
         ps.setInt(5,customer.getFirst_levelD());
         ps.executeUpdate();
+    }
+    public static Customer getCustomerById(int customerId){
+        Customer customer=null;
+        for(Customer customer1: allCustomers){
+            if(customer1.getCustomer_Id()==customerId){
+                customer=customer1;
+            }
+        }
+        return customer;
     }
 
     ///////////////////////////////////////////////Division////////////////////////////////////////////////////////
@@ -306,6 +324,15 @@ public abstract class DbHelper {
             addContact(new Contact(contact_Id, contactName,email));
         }
         return getContacts();
+    }
+    public static Contact getContactByName(String contactName){
+        Contact contact=null;
+        for(Contact contact1: allContacts){
+            if(contact1.getContactName().equals(contactName)){
+                contact=contact1;
+            }
+        }
+        return contact;
     }
 
     ////////////////////////////////////////////////////Time conversions////////////////////////////////////////////////////////

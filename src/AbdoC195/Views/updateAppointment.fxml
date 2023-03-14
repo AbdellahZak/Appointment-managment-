@@ -8,6 +8,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="AbdoC195.Controllers.updateAppointmentController">
     <children>
@@ -41,7 +42,7 @@
                   <Label text="User ID" />
                </children>
             </VBox>
-                <Label layoutX="21.0" layoutY="14.0" text="ADD APPOINTMENT">
+                <Label layoutX="21.0" layoutY="14.0" text="UPDATE APPOINTMENT">
                     <font>
                         <Font size="20.0" />
                     </font>
@@ -56,6 +57,7 @@
             <Label layoutX="322.0" layoutY="240.0" text="Hour" />
             <Label layoutX="457.0" layoutY="215.0" text="Minute" />
             <Label layoutX="457.0" layoutY="240.0" text="Minute" />
+            <Text fx:id="updateAppTextArea" layoutX="322.0" layoutY="68.0" strokeType="OUTSIDE" strokeWidth="0.0" />
             </children>
         </AnchorPane>
     </children>
