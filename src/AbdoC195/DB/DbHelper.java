@@ -400,22 +400,25 @@ public abstract class DbHelper {
     ///////////////////////////////////////////////////////Combo box auto select/////////////////////////////////////////////
 
     public static Countries getCountryByDivisonId(int divisionId) throws SQLException {
-        String sql="SELECT Country \n" +
+        String sql = "SELECT Country \n" +
                 "FROM countries\n" +
                 "inner join first_level_divisions ON countries.Country_ID = first_level_divisions.Country_ID\n" +
                 "Where Division_ID=?";
-        PreparedStatement ps=JDBC.connection.prepareStatement(sql);
-        ps.setInt(1,divisionId);
-        ResultSet rs=ps.executeQuery();
-        while (rs.next()){
-            String countryName= rs.getString("Country");
-            for(Countries country:allCountries){
-                if(country.getCountry().equals(countryName)){
-                    Countries country1=country;
+        PreparedStatement ps = JDBC.connection.prepareStatement(sql);
+        ps.setInt(1, divisionId);
+        ResultSet rs = ps.executeQuery();
+        Countries country1 = null;
+        while (rs.next()) {
+            String countryName = rs.getString("Country");
+            for (Countries country : allCountries) {
+                if (country.getCountry().equals(countryName)) {
+                    country1 = country;
                 }
-                Countries country2=country;
+
             }
+
         }
+        return country1;
     }
 
 

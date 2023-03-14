@@ -58,13 +58,14 @@ public class modifyCustomerController implements Initializable {
 
 
     }
-    public void passCustomer(Customer customer){
+    public void passCustomer(Customer customer) throws SQLException {
         modifyCustomerViewIdTxt.setText(Integer.toString(customer.getCustomer_Id()));
         modifyCustomerViewNameTxt.setText(customer.getCustomer_Name());
         modifyCustomerViewAddressTxt.setText(customer.getAddress());
         modifyCustomerViewPhoneNumberTxt.setText(customer.getPhoneNumber());
         modifyCustomerViewPostalCodeTxt.setText(customer.getPostalCode());
-        modifyCustomerViewCountriesComboStat.setPromptText("PLease select a country");
+        Countries country=DbHelper.getCountryByDivisonId(customer.getFirst_levelD());
+        modifyCustomerViewCountriesComboStat.setValue(country);
         modifyCustomerViewStateComboStat.setPromptText("please select a state");
     }
 
@@ -81,6 +82,7 @@ public class modifyCustomerController implements Initializable {
     }
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+
         try {
             modifyCustomerViewCountriesComboStat.setItems(getCountriesDb());
         } catch (SQLException throwables) {

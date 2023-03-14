@@ -74,7 +74,7 @@ public class DirectoryController implements Initializable {
         DbHelper.deleteCustomerByIdDb(customer.getCustomer_Id());
         }
 
-    public void directoryViewCustomerUpdateButton(ActionEvent actionEvent) throws IOException {
+    public void directoryViewCustomerUpdateButton(ActionEvent actionEvent) throws IOException, SQLException {
         FXMLLoader loader= new FXMLLoader();    //passing selecxted object when modify button is clicked to mod part view
         loader.setLocation(getClass().getResource("/AbdoC195/Views/modifyCustomer.fxml"));
         Parent modPartMenu =loader.load();
