@@ -66,7 +66,7 @@ public class ControllerMainLogin implements Initializable {
          }
 
     }
-    /**  */
+    /** enter button action event */
 
     public void loginScreenEnterBtn(ActionEvent actionEvent) throws IOException, SQLException {
         String userName= loginScreenLogingIdTxtFieldStat.getText();

@@ -26,39 +26,55 @@ import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
 import java.util.Formatter;
 import java.util.ResourceBundle;
-
+/** Controller for directory view */
 public class DirectoryController implements Initializable {
 
     Stage stage;
     Parent scene;
+    /** Customer table */
     public TableView<Customer> directoryViewCustomerTable;
+    /** customer id column */
     public TableColumn<Customer,Integer> directoryViewCustomerIdClmn;
+    /** customer name column */
     public TableColumn<Customer,String> directoryViewCustomerNameClmn;
+    /** customer address column */
     public TableColumn<Customer,String> directoryViewCustomerAddressClmn;
+    /** postal code column */
     public TableColumn<Customer,String> directoryViewCustomerPostalCodeClmn;
+    /** phone number column */
     public TableColumn<Customer,String> directoryViewCustomerPhoneNumberClmn;
+    /** state is column */
     public TableColumn<Customer,String> directoryViewCustomerFirstLevelDClmn;
+    /** appointment table */
     public TableView<Appointment> directoryViewAppTable;
+    /** app id column */
     public TableColumn directoryViewAppointmentIdClmn;
+    /** app title column */
     public TableColumn directoryViewAppTitleClmn;
+    /** app description column */
     public TableColumn directoryViewAppDesciptionClmn;
+    /** app location column */
     public TableColumn directoryViewAppLocationClmn;
+    /** app location column */
     public TableColumn directoryViewAppContactClmn;
+    /** app type column */
     public TableColumn directoryViewAppTypeClmn;
+    /** app start date time column */
     public TableColumn directoryViewAppStartDateClmn;
+    /** app end date time column */
     public TableColumn directoryViewAppEndDateClmn;
     public TableColumn directoryViewAppCustomerIdClmn;
     public TableColumn directoryViewAppUserIdClmn;
 
 
-
+    /** customer add button action event */
     public void directoryViewCustomerAddButton(ActionEvent actionEvent) throws IOException {
         stage =(Stage)((Button)actionEvent.getSource()).getScene().getWindow();
         scene = FXMLLoader.load(getClass().getResource("/AbdoC195/Views/addCustomer.fxml"));
         stage.setScene(new Scene(scene));
         stage.show();
     }
-
+    /** customer delete button action event */
     public void directoryViewCustomerDeleteButton(ActionEvent actionEvent) throws SQLException {
         Customer customer= directoryViewCustomerTable.getSelectionModel().getSelectedItem();
         for(Appointment appointment: DbHelper.allAppointments){
@@ -73,7 +89,7 @@ public class DirectoryController implements Initializable {
         DbHelper.allCustomers.remove(customer);
         DbHelper.deleteCustomerByIdDb(customer.getCustomer_Id());
         }
-
+    /** cutomer update button action event */
     public void directoryViewCustomerUpdateButton(ActionEvent actionEvent) throws IOException, SQLException {
         try {
             FXMLLoader loader= new FXMLLoader();    //passing selecxted object when modify button is clicked to mod part view
@@ -97,14 +113,14 @@ public class DirectoryController implements Initializable {
 
 
 
-
+    /** app add button action event */
     public void directoryViewAppAddButton(ActionEvent actionEvent) throws IOException {
         stage =(Stage)((Button)actionEvent.getSource()).getScene().getWindow();
         scene = FXMLLoader.load(getClass().getResource("/AbdoC195/Views/addAppointment.fxml"));
         stage.setScene(new Scene(scene));
         stage.show();
     }
-
+    /** app delete button action event */
     public void directoryViewAppDeleteButton(ActionEvent actionEvent) throws SQLException {
         Appointment appointment= directoryViewAppTable.getSelectionModel().getSelectedItem();
         Alert alert =new Alert(Alert.AlertType.ERROR);
@@ -118,7 +134,7 @@ public class DirectoryController implements Initializable {
         alert.setContentText(" Cancelling Appointment ID: "+appointment.getAppointmentId()+" Type: "+appointment.getType());
         alert.showAndWait();
     }
-
+    /** app update button action event */
     public void directoryViewAppUpdateButton(ActionEvent actionEvent) throws IOException {
         try {
             FXMLLoader loader= new FXMLLoader();    //passing selecxted object when modify button is clicked to mod part view
@@ -138,10 +154,12 @@ public class DirectoryController implements Initializable {
         }
 
     }
+    /** all app radio button action event */
     public void directoryViewAppAllRadioBtn(ActionEvent actionEvent) {
         directoryViewAppTable.setItems(DbHelper.allAppointments);
 
     }
+    /** app week radio button action event */
     public void directoryViewAppWeekRadioBtn(ActionEvent actionEvent) {
         ObservableList<Appointment> appointmentsWithinWeek= FXCollections.observableArrayList();
         LocalDateTime localNow=LocalDateTime.now();
@@ -154,6 +172,7 @@ public class DirectoryController implements Initializable {
         }
     directoryViewAppTable.setItems(appointmentsWithinWeek);
     }
+    /** app month radio button action event */
     public void directoryViewAppAMonthRadioBtn(ActionEvent actionEvent) {
         ObservableList<Appointment> appointmentsWithinMonth= FXCollections.observableArrayList();
         LocalDateTime localNow=LocalDateTime.now();
@@ -168,7 +187,7 @@ public class DirectoryController implements Initializable {
     }
 
 
-
+    /** class initiliaze methode */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
@@ -221,7 +240,7 @@ public class DirectoryController implements Initializable {
 
     }
 
-
+    /** reports button */
     public void directoryViewAppReportsButton(ActionEvent actionEvent) throws IOException {
         stage =(Stage)((Button)actionEvent.getSource()).getScene().getWindow();
         scene = FXMLLoader.load(getClass().getResource("/AbdoC195/Views/reportsView.fxml"));
