@@ -20,16 +20,25 @@ import java.util.Locale;
 import java.util.MissingResourceException;
 import java.util.ResourceBundle;
 
+/** login view controller class   */
 
 public class ControllerMainLogin implements Initializable {
     Stage stage;
     Parent scene;
+    /** log in label */
+
     public Label loginScreenLogingIdLbl;
+    /** log in label */
     public Label loginScreenPasswordLbl;
+    /** pass label */
     public TextField loginScreenLogingIdTxtFieldStat;
+    /** log in field */
     public TextField loginScreenPasswordTxtFieldStat;
+    /** pass field */
     public TextField mainViewTimeZoneTxtField;
+    /** timezone text */
     public Button loginScreenEnterBtnStat;
+    /** enter button */
     public Label loginScreenZoneIdLbl;
 
     public void loginScreenLogingIdTxtField(ActionEvent actionEvent) throws SQLException {
@@ -39,6 +48,7 @@ public class ControllerMainLogin implements Initializable {
     public void loginScreenPasswordTxtField(ActionEvent actionEvent) throws SQLException {
 
     }
+    /** initialize methode */
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -56,6 +66,7 @@ public class ControllerMainLogin implements Initializable {
          }
 
     }
+    /**  */
 
     public void loginScreenEnterBtn(ActionEvent actionEvent) throws IOException, SQLException {
         String userName= loginScreenLogingIdTxtFieldStat.getText();

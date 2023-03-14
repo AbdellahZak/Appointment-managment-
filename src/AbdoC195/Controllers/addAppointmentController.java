@@ -22,25 +22,39 @@ import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ResourceBundle;
-
+/** Controller for add appointment View */
 public class addAppointmentController implements Initializable {
-
+    /** alert text */
     public Text addViewTextArea;
     Stage stage;
     Parent scene;
+    /** app id field */
     public TextField addAppViewAppIdTxt;
+    /** app title field  */
     public TextField addAppViewTitleTxt;
+    /** app description field */
     public TextField addAppViewDescriptionTxt;
+    /** app location field */
     public TextField addAppViewLocationTxt;
+    /** app type field  */
     public TextField addAppViewTypeTxt;
+    /** contact combo */
     public ComboBox<Contact> addAppViewContactComboStat;
+    /** start time combo */
     public ComboBox addAppViewStartTimeComboStat;
+    /** end time combo */
     public ComboBox addAppViewEndTimeComboStat;
+    /** customer id field */
     public TextField addAppViewCustomerIdTxt;
+    /** user id txt field  */
     public TextField addAppViewUserIdTxt;
+    /** date picker combo */
     public DatePicker addAppViewStartDatePicker;
+    /** date picker */
     public DatePicker addAppViewEndDatePicker;
+    /** hour combo */
     public ComboBox addAppViewStartHourPickerCombo;
+    /** MINUTE combo */
     public ComboBox addAppViewStartMinutePickerCombo;
     public ComboBox addAppViewEndHourPickerCombo;
     public ComboBox addAppViewEndMinutePickerCombo;
@@ -58,6 +72,7 @@ public class addAppointmentController implements Initializable {
 
     public void addAppViewContactComboStat(ActionEvent actionEvent) {
     }
+    /** add button action event */
 
     public void addAppViewAddBtn(ActionEvent actionEvent) throws IOException, SQLException {
         int appointmentId=0;
@@ -118,6 +133,7 @@ public class addAppointmentController implements Initializable {
         stage.setScene(new Scene(scene));
         stage.show();
     }
+    /** cancel button action event */
 
     public void addAppViewCancelBtn(ActionEvent actionEvent) throws IOException {
         stage =(Stage)((Button)actionEvent.getSource()).getScene().getWindow();
@@ -125,6 +141,7 @@ public class addAppointmentController implements Initializable {
         stage.setScene(new Scene(scene));
         stage.show();
     }
+    /** Class initialize methode */
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {

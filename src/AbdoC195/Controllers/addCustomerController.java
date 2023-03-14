@@ -22,18 +22,29 @@ import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 import static AbdoC195.DB.DbHelper.*;
+/** customer add controller */
 
 public class addCustomerController implements Initializable {
+    /** alert text field */
+
     public Text addCustomerTextArea;
     Stage stage;
     Parent scene;
+    /** countries combo box */
+
     public ComboBox<Countries> addCustomerViewCountriesComboStat;
+    /** states combo box  */
     public ComboBox<Divison> addCustomerViewStateComboStat;
+    /** customer name field */
     public TextField addCustomerViewNameTxt;
+    /**  customer address field */
     public TextField addCustomerViewAddressTxt;
+    /** address field */
     public TextField addCustomerViewPostalCodeTxt;
+    /** postal code field */
     public TextField addCustomerViewPhoneNumberTxt;
     public TextField addCustomerViewIdTxt;
+    /** countied combo boc action event */
 
     public void addCustomerViewCountriesCombo(ActionEvent actionEvent) throws SQLException {
 
@@ -42,9 +53,13 @@ public class addCustomerController implements Initializable {
        ObservableList<Divison> filteredStatesByCountry =FilterByCountryId(countryId);
        addCustomerViewStateComboStat.setItems(filteredStatesByCountry);
     }
+    /** states combo box action event */
+
     public void addCustomerViewStatesCombo(ActionEvent actionEvent) {
 
     }
+    /** add button action event */
+
     public void addCustomerViewAddBtn(ActionEvent actionEvent) throws SQLException, IOException {
         int customer_Id=0;
         String customer_Name=addCustomerViewNameTxt.getText();
@@ -70,12 +85,15 @@ public class addCustomerController implements Initializable {
         stage.setScene(new Scene(scene));
         stage.show();
     }
+    /** cancel button action event */
+
     public void addCustomerViewCancelBtn(ActionEvent actionEvent) throws IOException {
         stage =(Stage)((Button)actionEvent.getSource()).getScene().getWindow();
         scene = FXMLLoader.load(getClass().getResource("/AbdoC195/Views/directoryView.fxml"));
         stage.setScene(new Scene(scene));
         stage.show();
     }
+    /** Class initialize action event */
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
