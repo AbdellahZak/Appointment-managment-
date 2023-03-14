@@ -22,21 +22,29 @@ import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 import static AbdoC195.DB.DbHelper.*;
-
+/** customer view controller class */
 public class modifyCustomerController implements Initializable {
+
+    /** alert text field  */
     public Text updateCustomerTextArea;
     Stage stage;
     Parent scene;
-
+    /** customer id field */
     public TextField modifyCustomerViewIdTxt;
+    /** cust name field */
     public TextField modifyCustomerViewNameTxt;
+    /** cust name field */
     public TextField modifyCustomerViewAddressTxt;
+    /** postal code field */
     public TextField modifyCustomerViewPostalCodeTxt;
+    /** phone number field */
     public TextField modifyCustomerViewPhoneNumberTxt;
+    /** country combo box */
     public ComboBox<Countries> modifyCustomerViewCountriesComboStat;
+    /** state combo box */
     public ComboBox<Divison> modifyCustomerViewStateComboStat;
 
-
+    /** modify customer button */
     public void modifyCustomerViewmodifyBtn(ActionEvent actionEvent) throws SQLException, IOException {
         Integer customerId= Integer.parseInt(modifyCustomerViewIdTxt.getText());
         String customerName= modifyCustomerViewNameTxt.getText();
@@ -58,7 +66,7 @@ public class modifyCustomerController implements Initializable {
         stage.setScene(new Scene(scene));
         stage.show();
     }
-
+    /** cancel button action event */
     public void modifyCustomerViewCancelBtn(ActionEvent actionEvent) throws IOException {
         stage =(Stage)((Button)actionEvent.getSource()).getScene().getWindow();
         scene = FXMLLoader.load(getClass().getResource("/AbdoC195/Views/directoryView.fxml"));
@@ -67,6 +75,7 @@ public class modifyCustomerController implements Initializable {
 
 
     }
+    /** customer object view tras  */
     public void passCustomer(Customer customer) throws SQLException {
         modifyCustomerViewIdTxt.setText(Integer.toString(customer.getCustomer_Id()));
         modifyCustomerViewNameTxt.setText(customer.getCustomer_Name());
