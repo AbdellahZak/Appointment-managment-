@@ -9,20 +9,19 @@ import java.io.IOException;
 import java.sql.*;
 import java.time.*;
 import java.time.temporal.ChronoUnit;
+/** helper class */
 
 public abstract class DbHelper {
 
     //////////////////////////////////////////////User///////////////////////////////////////////////
+    /** users observable list */
 
     public static ObservableList<User> allUsers= FXCollections.observableArrayList();
-
-    public static ObservableList<User> getUsers(){
-        return allUsers;
-    }
-
+    /** add user to obsevable list methode */
     public static void addUserList(User user){
         allUsers.add(user);
     }
+    /** get users from db  */
 
     public static void getUsersDb() throws SQLException {
 
@@ -37,7 +36,7 @@ public abstract class DbHelper {
             addUserList(new User(userId, userName,password));
         }
     }
-
+    /** verify login details */
     public static boolean VerifyNameAndPassword(String userName,String password) throws SQLException, IOException {
         Boolean Bname=false;
         Boolean Bpass=false;
@@ -64,6 +63,7 @@ public abstract class DbHelper {
         myWriter.close();
     return false;
     }
+    /** get user by user id */
     public static User getUserById(int userId){
         User user=null;
         for(User user1: allUsers){
@@ -74,15 +74,17 @@ public abstract class DbHelper {
         return user;
     }
 ////////////////////////////////////////////////Customers////////////////////////////////////////////////
+    /**  customers observable list   */
     public static ObservableList<Customer> allCustomers= FXCollections.observableArrayList();
-
+    /** get customers OL */
     public static ObservableList<Customer> getCustomers() throws SQLException {
         return allCustomers;
     }
+    /** add to customer observable list  */
     public static void addCustomerList(Customer customer){
         allCustomers.add(customer);
     }
-
+    /** add customer object to db */
     public static void addCustomer(Customer customer) throws SQLException {
         String sql = "INSERT INTO CUSTOMERS (Customer_Name,Address,Postal_Code,Phone,Division_ID) VALUES (?,?,?,?,?)";
         PreparedStatement ps= JDBC.connection.prepareStatement(sql);
@@ -94,7 +96,7 @@ public abstract class DbHelper {
         ps.setInt(5,customer.getFirst_levelD());
         ps.executeUpdate();
     }
-
+    /** get customers from db */
     public static void getCustomersDb() throws SQLException {
         String sql="SELECT Customer_ID, Customer_Name, Address, Postal_Code, Phone, Division_ID FROM customers";
         PreparedStatement ps=JDBC.connection.prepareStatement(sql);
@@ -109,12 +111,15 @@ public abstract class DbHelper {
             addCustomerList (new Customer(customer_Id,customer_Name,address,postal_Code,phone,divison_ID));
         }
     }
+    /** delete customer by customer id */
     public static void deleteCustomerByIdDb(int customerId) throws SQLException {
         String sql="DELETE FROM CUSTOMERS WHERE Customer_ID=?";
         PreparedStatement ps= JDBC.connection.prepareStatement(sql);
         ps.setInt(1,customerId);
         ps.executeUpdate();
     }
+    /** update customer */
+
     public static void updateCustomerRowById(Customer customer) throws SQLException {
         String sql = "UPDATE CUSTOMERS SET Customer_Name=?,Address=?,Postal_Code=?,Phone=?,Division_ID=? WHERE Customer_ID=?";
         PreparedStatement ps= JDBC.connection.prepareStatement(sql);
@@ -126,6 +131,8 @@ public abstract class DbHelper {
         ps.setInt(5,customer.getFirst_levelD());
         ps.executeUpdate();
     }
+    /**  get customer object */
+
     public static Customer getCustomerById(int customerId){
         Customer customer=null;
         for(Customer customer1: allCustomers){
@@ -138,6 +145,7 @@ public abstract class DbHelper {
 
     ///////////////////////////////////////////////Division////////////////////////////////////////////////////////
 
+    /**  */
 
     public static ObservableList<Divison> allDivisions= FXCollections.observableArrayList();
 
