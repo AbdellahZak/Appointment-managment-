@@ -80,7 +80,7 @@ public class DirectoryController implements Initializable {
         for(Appointment appointment: DbHelper.allAppointments){
             if(appointment.getCustomerId()==customer.getCustomer_Id()){
                 Alert alert =new Alert(Alert.AlertType.ERROR);
-                alert.setTitle("Customer deletion unssucceful");
+                alert.setTitle("Customer deletion unsuccessful");
                 alert.setContentText("Customer has pending appointments");
                 alert.showAndWait();
                 return;
@@ -123,7 +123,7 @@ public class DirectoryController implements Initializable {
     /** app delete button action event */
     public void directoryViewAppDeleteButton(ActionEvent actionEvent) throws SQLException {
         Appointment appointment= directoryViewAppTable.getSelectionModel().getSelectedItem();
-        Alert alert =new Alert(Alert.AlertType.ERROR);
+        Alert alert =new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Cancel Appointment");
         alert.setContentText("You will cancelling the selected appointment, are you sure?");
         alert.showAndWait();
@@ -227,12 +227,12 @@ public class DirectoryController implements Initializable {
         // alert
 
         if(DbHelper.isAppWithin15()!=null){
-            Alert alert = new Alert(Alert.AlertType.ERROR);
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle(" Appointment Alert ");
             alert.setContentText(" An appointment ID "+DbHelper.isAppWithin15().getAppointmentId()+" is scheduled for "+DbHelper.isAppWithin15().getStartDateTime());
             alert.showAndWait();
         }else{
-            Alert alert = new Alert(Alert.AlertType.ERROR);
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle(" Appointment Alert ");
             alert.setContentText(" No appointments scheduled within 15 minutes");
             alert.showAndWait();

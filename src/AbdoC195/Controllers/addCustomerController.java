@@ -98,6 +98,12 @@ public class addCustomerController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         allCountries.clear();
+        allDivisions.clear();
+        try {
+            DbHelper.getDivisionsDb();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
         try {
             DbHelper.getCountriesDb();
         } catch (SQLException throwables) {

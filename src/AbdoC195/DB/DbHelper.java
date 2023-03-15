@@ -172,17 +172,24 @@ public abstract class DbHelper {
             addDiviosn(new Divison(division_Id,division,country_ID));
         }
     }
-    /** filter divisions by country */
+    /** filter divisions by country
+     * lambda expression included in FilterByCountryId */
 
     public static ObservableList<Divison> FilterByCountryId(int countryId) throws SQLException {
         ObservableList<Divison> namedStates = FXCollections.observableArrayList();
         ObservableList<Divison> allDivisions= DbHelper.getDivisions();
 
-        for(Divison division: allDivisions){
+        /*for(Divison division: allDivisions){
             if(division.getCountry_Id()==countryId){
                 namedStates.add(division);
             }
-        }
+        }*/
+
+        allDivisions.forEach(divison -> {
+            if(divison.getCountry_Id()==countryId){
+                namedStates.add(divison);
+            }
+        });
         return namedStates;
     }
 
@@ -431,12 +438,18 @@ public abstract class DbHelper {
     public static void addAppointmentreport2List(Appointment appointment){
         reportApps2.add(appointment);
     }
+    /** Lambda to filter by contact name */
     public static void getAppointmentForReport2(Contact contact) {
-            for(Appointment appointment:allAppointments){
+            /*for(Appointment appointment:allAppointments){
                 if(contact.getContactName().equals(appointment.getContact())){
                     addAppointmentreport2List (appointment);
                 }
-            }
+            }*/
+            allAppointments.forEach(appointment -> {
+                if (contact.getContactName().equals(appointment.getContact())){
+                    addAppointmentreport2List (appointment);
+                }
+            });
     }
 
     public static ObservableList<Appointment> reportApps3= FXCollections.observableArrayList();
